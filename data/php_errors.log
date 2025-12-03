@@ -1,0 +1,35 @@
+[29-Nov-2025 11:53:03 Europe/Berlin] PHP Warning:  require_once(CashPayment.php): Failed to open stream: No such file or directory in C:\xamppp\htdocs\coffeePOS\classes\checkout.php on line 16
+[29-Nov-2025 11:53:03 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required 'CashPayment.php' (include_path='C:\xamppp\php\PEAR') in C:\xamppp\htdocs\coffeePOS\classes\checkout.php:16
+Stack trace:
+#0 {main}
+  thrown in C:\xamppp\htdocs\coffeePOS\classes\checkout.php on line 16
+[29-Nov-2025 11:55:00 Europe/Berlin] PHP Warning:  Undefined array key "id" in C:\xamppp\htdocs\coffeePOS\classes\checkout.php on line 49
+[29-Nov-2025 11:55:00 Europe/Berlin] PHP Warning:  Undefined array key "id" in C:\xamppp\htdocs\coffeePOS\classes\checkout.php on line 49
+[29-Nov-2025 11:55:00 Europe/Berlin] PHP Warning:  Undefined array key "id" in C:\xamppp\htdocs\coffeePOS\classes\checkout.php on line 49
+[29-Nov-2025 11:55:00 Europe/Berlin] PHP Warning:  Undefined array key "id" in C:\xamppp\htdocs\coffeePOS\classes\checkout.php on line 49
+[29-Nov-2025 11:55:00 Europe/Berlin] PHP Warning:  Undefined array key "id" in C:\xamppp\htdocs\coffeePOS\classes\checkout.php on line 49
+[29-Nov-2025 11:55:00 Europe/Berlin] PHP Warning:  Undefined array key "id" in C:\xamppp\htdocs\coffeePOS\classes\checkout.php on line 80
+[29-Nov-2025 11:55:14 Europe/Berlin] PHP Warning:  Undefined array key "id" in C:\xamppp\htdocs\coffeePOS\classes\checkout.php on line 49
+[29-Nov-2025 11:55:14 Europe/Berlin] PHP Warning:  Undefined array key "id" in C:\xamppp\htdocs\coffeePOS\classes\checkout.php on line 49
+[29-Nov-2025 11:55:14 Europe/Berlin] PHP Warning:  Undefined array key "id" in C:\xamppp\htdocs\coffeePOS\classes\checkout.php on line 49
+[29-Nov-2025 11:55:14 Europe/Berlin] PHP Warning:  Undefined array key "id" in C:\xamppp\htdocs\coffeePOS\classes\checkout.php on line 49
+[29-Nov-2025 11:55:14 Europe/Berlin] PHP Warning:  Undefined array key "id" in C:\xamppp\htdocs\coffeePOS\classes\checkout.php on line 49
+[29-Nov-2025 11:55:14 Europe/Berlin] PHP Warning:  Undefined array key "id" in C:\xamppp\htdocs\coffeePOS\classes\checkout.php on line 80
+[29-Nov-2025 12:00:09 Europe/Berlin] PHP Warning:  Undefined array key "id" in C:\xamppp\htdocs\coffeePOS\classes\checkout.php on line 49
+[29-Nov-2025 12:00:09 Europe/Berlin] PHP Warning:  Undefined array key "id" in C:\xamppp\htdocs\coffeePOS\classes\checkout.php on line 49
+[29-Nov-2025 12:00:09 Europe/Berlin] PHP Warning:  Undefined array key "id" in C:\xamppp\htdocs\coffeePOS\classes\checkout.php on line 49
+[29-Nov-2025 12:00:09 Europe/Berlin] PHP Warning:  Undefined array key "id" in C:\xamppp\htdocs\coffeePOS\classes\checkout.php on line 49
+[29-Nov-2025 12:00:09 Europe/Berlin] PHP Warning:  Undefined array key "id" in C:\xamppp\htdocs\coffeePOS\classes\checkout.php on line 49
+[29-Nov-2025 12:00:09 Europe/Berlin] PHP Warning:  Undefined array key "id" in C:\xamppp\htdocs\coffeePOS\classes\checkout.php on line 80
+[29-Nov-2025 12:01:25 Europe/Berlin] PHP Warning:  Undefined array key "id" in C:\xamppp\htdocs\coffeePOS\classes\checkout.php on line 49
+[29-Nov-2025 12:01:25 Europe/Berlin] PHP Warning:  Undefined array key "id" in C:\xamppp\htdocs\coffeePOS\classes\checkout.php on line 49
+[29-Nov-2025 12:01:25 Europe/Berlin] PHP Warning:  Undefined array key "id" in C:\xamppp\htdocs\coffeePOS\classes\checkout.php on line 49
+[29-Nov-2025 12:01:25 Europe/Berlin] PHP Warning:  Undefined array key "id" in C:\xamppp\htdocs\coffeePOS\classes\checkout.php on line 49
+[29-Nov-2025 12:01:25 Europe/Berlin] PHP Warning:  Undefined array key "id" in C:\xamppp\htdocs\coffeePOS\classes\checkout.php on line 49
+[29-Nov-2025 12:01:25 Europe/Berlin] PHP Warning:  Undefined array key "id" in C:\xamppp\htdocs\coffeePOS\classes\checkout.php on line 80
+[29-Nov-2025 12:02:25 Europe/Berlin] PHP Fatal error:  Uncaught TypeError: Unsupported operand types: string * int in C:\xamppp\htdocs\coffeePOS\classes\Cart.php:36
+Stack trace:
+#0 C:\xamppp\htdocs\coffeePOS\classes\Order.php(14): Cart->computeTotal()
+#1 C:\xamppp\htdocs\coffeePOS\classes\checkout.php(99): Order->checkout()
+#2 {main}
+  thrown in C:\xamppp\htdocs\coffeePOS\classes\Cart.php on line 36

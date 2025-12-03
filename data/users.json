@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "email": "lordmarc@gmail.com",
+    "role": "staff",
+    "password": "$2y$10$25xSmNzX0Y545aJFtcEZd.MlhilDX9akFZCaQhaApI6XYX9g.G.VC"
+  },
+  {
+    "id": 2,
+    "email": "admin@gmail.com",
+    "role": "admin",
+    "password": "$2y$10$.B/5j01gLqRrBwLspkP7TO4s0AOnEfZAESDhaDRgNnKWBTLSKosd."
+  }
+]
