@@ -10,11 +10,6 @@
     exit();
   }
 
-  $auth = new Auth();
-  if($_SERVER['REQUEST_METHOD'] === "POST")
-  {
-    $auth->logout();
-  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,7 +29,7 @@
         <h2 class="text-2xl font-semibold">Coffee</h2>
         <i class="fa-solid fa-mug-hot text-2xl"></i>  
       </div>
-      <form action="index.php" method="POST">
+      <form action="logout.php" method="POST">
         <button class="bg-[#C9B59C] hover:bg-[#D9CFC7] p-2 rounded cursor-pointer" type="submit">Logout</button>
       </form>
     </nav>
