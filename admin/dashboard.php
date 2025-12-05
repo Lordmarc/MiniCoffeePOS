@@ -1,6 +1,8 @@
 <?php
+
 session_start();
 require_once __DIR__ . '/../classes/Auth.php';
+
 if(!isset($_SESSION['user_id']))
 {
   header('Location: login.php');
@@ -13,7 +15,6 @@ if(isset($_SESSION['user_email']))
   $email = $_SESSION['user_email'];
 }
 
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,6 +23,9 @@ if(isset($_SESSION['user_email']))
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Coffee POS</title>
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
@@ -77,8 +81,8 @@ if(isset($_SESSION['user_email']))
         </div>
       </div>
       <div class="flex gap-4 h-full">
-        <div class="flex-1 bg-white rounded">
-               <canvas>canvas</canvas>
+        <div class="flex-1 bg-white h-[300px] rounded">
+               <canvas id="sales-chart"></canvas>
         </div>
         <div class="popular-items w-[350px]  bg-white rounded">
           asda
