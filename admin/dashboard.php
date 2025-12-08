@@ -69,7 +69,10 @@ if(isset($_SESSION['user_email']))
       <div class="flex gap-4">
         <div class="flex-1 bg-white rounded p-2 h-44">
           <h3>Revenue</h3>
-          <p>Price</p>
+          <div class="flex">
+            <span>₱</span>
+            <p id="revenue"></p>
+          </div>
         </div>
         <div class="flex-1 bg-white rounded p-2">
           <h3>Today's Sale</h3>
@@ -81,7 +84,7 @@ if(isset($_SESSION['user_email']))
         </div>
       </div>
       <div class="flex gap-4 h-full">
-        <div class="flex-1 bg-white h-[300px] rounded">
+        <div class="flex-1 bg-white h-full rounded">
                <canvas id="sales-chart"></canvas>
         </div>
         <div class="popular-items w-[350px]  bg-white rounded">
@@ -96,7 +99,7 @@ if(isset($_SESSION['user_email']))
   </div>
   </div>
 
-  <script src="../js/dashboard.js"></script>
+  <script src="../js/dashboard.js" defer></script>
 </body>
 </html>
 

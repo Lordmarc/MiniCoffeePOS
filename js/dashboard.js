@@ -1,6 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
   const tabs = document.querySelectorAll('#links .tab');
 
+  const revenue = document.getElementById('revenue');
+  let chart;
+
   tabs.forEach(tab => {
     tab.addEventListener('click', ()=>{
       
@@ -20,26 +23,61 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  fetch('../sales_chart_data.php')
+  function loadSales()
+  {
+  console.log("LOAD DATA CALLED: " + new Date().toLocaleTimeString());
+  fetch('../api/sales_chart_data.php')
   .then(res => res.json())
   .then(data => {
     console.log("Fetched data:", data);
     
-    const label = data.map(item => item.date);
+    const labels = data.map(item => item.date);
     const sales = data.map(item => item.total_sales);
 
     const ctx = document.getElementById('sales-chart').getContext('2d');
 
-    new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: label,
-        datasets: [{
-          label: 'Total Sales Per Day',
-          data: sales,
-          borderWidth: 1
-        }]
-      }
-    })
+    if(!chart)
+    {
+        chart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'Total Sales Per Day',
+            data: sales,
+            borderWidth: 1
+          }]
+        }
+      })
+    }else {
+      chart.data.labels = labels;
+      chart.data.datasets[0].data = sales;
+      chart.update();
+    }
+
   })
+  }
+
+  function loadRevenue()
+  {
+    console.log("Loading data");
+
+    fetch('../api/todays_revenue.php')
+    .then(res => res.json())
+    .then(data => {
+      console.log("Data Received:", data);
+
+      revenue.innerText = data.total_revenue.toFixed(2);
+    })
+  }
+
+
+  loadSales();
+  loadRevenue();
+  setInterval(() => {
+    
+  console.log("Interval triggered:", new Date().toLocaleTimeString());
+    loadSales();
+    loadRevenue();
+  }, 5000)
 });

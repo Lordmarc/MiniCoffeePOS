@@ -47,17 +47,17 @@ class Sales {
       $this->salesPerDay[$date] += $sale['total'];
     }
 
-    $output = [];
+    $chartData = [];
 
     foreach($this->salesPerDay as $date => $totalSales)
     {
-      $output[] = [
+      $chartData[] = [
         "date" => $date,
         "total_sales" => $totalSales
       ];
     }
 
 
-    return $output;
+    return $chartData;
   }
 }

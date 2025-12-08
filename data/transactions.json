@@ -196,5 +196,243 @@
         "subtotal": 158,
         "discount": 7.9,
         "total": 150.1
+    },
+    {
+        "id": 10,
+        "date": "2025-12-08 17:31:27",
+        "items": [
+            {
+                "id": 2,
+                "name": "Caramel Machiatto",
+                "price": 69,
+                "quantity": 1,
+                "subtotal": 69
+            },
+            {
+                "id": 3,
+                "name": "Cappuccino ",
+                "price": 59,
+                "quantity": 1,
+                "subtotal": 59
+            },
+            {
+                "id": 5,
+                "name": "Iced Caramel Coffee",
+                "price": 79,
+                "quantity": 1,
+                "subtotal": 79
+            }
+        ],
+        "subtotal": 207,
+        "discount": 10.35,
+        "total": 196.65
+    },
+    {
+        "id": 11,
+        "date": "2025-12-08 17:34:02",
+        "items": [
+            {
+                "id": 1,
+                "name": "Creamy Latte",
+                "price": 50,
+                "quantity": 1,
+                "subtotal": 50
+            }
+        ],
+        "subtotal": 50,
+        "discount": 0,
+        "total": 50
+    },
+    {
+        "id": 12,
+        "date": "2025-12-08 17:34:23",
+        "items": [
+            {
+                "id": 2,
+                "name": "Caramel Machiatto",
+                "price": 69,
+                "quantity": 1,
+                "subtotal": 69
+            }
+        ],
+        "subtotal": 69,
+        "discount": 0,
+        "total": 69
+    },
+    {
+        "id": 13,
+        "date": "2025-12-08 17:35:34",
+        "items": [
+            {
+                "id": 3,
+                "name": "Cappuccino ",
+                "price": 59,
+                "quantity": 1,
+                "subtotal": 59
+            }
+        ],
+        "subtotal": 59,
+        "discount": 0,
+        "total": 59
+    },
+    {
+        "id": 14,
+        "date": "2025-12-08 17:37:02",
+        "items": [
+            {
+                "id": 4,
+                "name": "Americano",
+                "price": 79,
+                "quantity": 2,
+                "subtotal": 158
+            }
+        ],
+        "subtotal": 158,
+        "discount": 0,
+        "total": 158
+    },
+    {
+        "id": 15,
+        "date": "2025-12-08 17:37:42",
+        "items": [
+            {
+                "id": 2,
+                "name": "Caramel Machiatto",
+                "price": 69,
+                "quantity": 1,
+                "subtotal": 69
+            }
+        ],
+        "subtotal": 69,
+        "discount": 3.45,
+        "total": 65.55
+    },
+    {
+        "id": 16,
+        "date": "2025-12-08 17:39:28",
+        "items": [
+            {
+                "id": 5,
+                "name": "Iced Caramel Coffee",
+                "price": 79,
+                "quantity": 1,
+                "subtotal": 79
+            }
+        ],
+        "subtotal": 79,
+        "discount": 0,
+        "total": 79
+    },
+    {
+        "id": 17,
+        "date": "2025-12-08 17:41:46",
+        "items": [
+            {
+                "id": 5,
+                "name": "Iced Caramel Coffee",
+                "price": 79,
+                "quantity": 1,
+                "subtotal": 79
+            }
+        ],
+        "subtotal": 79,
+        "discount": 0,
+        "total": 79
+    },
+    {
+        "id": 18,
+        "date": "2025-12-08 17:42:41",
+        "items": [
+            {
+                "id": 5,
+                "name": "Iced Caramel Coffee",
+                "price": 79,
+                "quantity": 1,
+                "subtotal": 79
+            }
+        ],
+        "subtotal": 79,
+        "discount": 0,
+        "total": 79
+    },
+    {
+        "id": 19,
+        "date": "2025-12-08 17:43:33",
+        "items": [
+            {
+                "id": 5,
+                "name": "Iced Caramel Coffee",
+                "price": 79,
+                "quantity": 1,
+                "subtotal": 79
+            }
+        ],
+        "subtotal": 79,
+        "discount": 0,
+        "total": 79
+    },
+    {
+        "id": 20,
+        "date": "2025-12-08 17:57:28",
+        "items": [
+            {
+                "id": 2,
+                "name": "Caramel Machiatto",
+                "price": 69,
+                "quantity": 1,
+                "subtotal": 69
+            }
+        ],
+        "subtotal": 69,
+        "discount": 3.45,
+        "total": 65.55
+    },
+    {
+        "id": 21,
+        "date": "2025-12-08 18:00:38",
+        "items": [
+            {
+                "id": 2,
+                "name": "Caramel Machiatto",
+                "price": 69,
+                "quantity": 1,
+                "subtotal": 69
+            }
+        ],
+        "subtotal": 69,
+        "discount": 10.35,
+        "total": 58.65
+    },
+    {
+        "id": 22,
+        "date": "2025-12-08 18:01:31",
+        "items": [
+            {
+                "id": 4,
+                "name": "Americano",
+                "price": 79,
+                "quantity": 1,
+                "subtotal": 79
+            }
+        ],
+        "subtotal": 79,
+        "discount": 7.9,
+        "total": 71.1
+    },
+    {
+        "id": 23,
+        "date": "2025-12-08 18:01:57",
+        "items": [
+            {
+                "id": 1,
+                "name": "Creamy Latte",
+                "price": 50,
+                "quantity": 3,
+                "subtotal": 150
+            }
+        ],
+        "subtotal": 150,
+        "discount": 7.5,
+        "total": 142.5
     }
 ]

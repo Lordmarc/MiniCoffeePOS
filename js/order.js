@@ -112,7 +112,6 @@ document.addEventListener("DOMContentLoaded", () => {
     subtotal.innerHTML = `₱ ${total.toFixed(2)}`;
     discount.innerHTML = `₱ ${discountValue.toFixed(2)}`;
     totalAmount.innerHTML = `₱ ${discountAmount.toFixed(2)}`;
-    cashAmount.value;
 
   }
   
@@ -251,6 +250,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     order.innerHTML = "";
     total = 0;
+    cashAmount.blur();
+    cashAmount.value = '';
+    setTimeout(() => cashAmount.value = '', 0);
+    changeAmount.innerHTML = '';
+    discountRate = 0;
+    discountValue = 0;
+    discountAmount = 0;
+
     updateTotalUI();
     Swal.fire({
       title: "Order Complete",
