@@ -95,8 +95,12 @@ if(isset($_SESSION['user_email']))
         <div class="flex-1 bg-white h-full rounded">
                <canvas id="sales-chart"></canvas>
         </div>
-        <div class="popular-items w-[350px] h-full bg-white rounded">
-          Best Sellers  Today
+        <div class="popular-items w-[350px] p-4 h-full max-h-[550px] bg-white rounded">
+          <h3 class="w-full text-center">Weekly Best Seller</h3>
+          <div class="weekly-items w-full flex h-full justify-around flex-col  py-2">
+          
+         
+          </div>
         </div>
       </div>
     </div>

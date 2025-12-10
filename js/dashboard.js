@@ -4,6 +4,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const revenue = document.getElementById('revenue');
   const totalOrder = document.getElementById('total_order');
   const topItems = document.getElementById('top-items');
+  const weeklyItems = document.querySelector('.weekly-items');
+  
   let chart;
 
   tabs.forEach(tab => {
@@ -98,6 +100,8 @@ document.addEventListener("DOMContentLoaded", () => {
     .then(res => res.json())
     .then(data => {
       
+      const fragment = document.createDocumentFragment();
+
       if(data.length === 0)
       {
         console.log("Wala pang best sellers");
@@ -107,7 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <p class="text-md  font-bold">No best sellers yet.</p>
         `;
         
-        topItems.appendChild(noData);
+        fragment.appendChild(noData);
       }else {
         data.forEach(item => {
         const div = document.createElement('div');
@@ -117,13 +121,42 @@ document.addEventListener("DOMContentLoaded", () => {
           <span>-</span>
           <p class="text-md  font-bold">${item.total_sold}x</p>
         `;
-        topItems.appendChild(div);
-      })
+        fragment.appendChild(div);
+      });
       }
 
+      topItems.replaceChildren(fragment);
+    });
+  }
 
-      
   
+
+  function loadWeeklyBestItem()
+  {
+    weeklyItems.innerHTML = '';
+    fetch('../api/weekly_best_items.php')
+    .then(res => res.json())
+    .then(data => {
+      console.log("Ito ang data sa weeekly", data)
+      
+      const fragment = document.createDocumentFragment();
+      data.forEach(data => {
+        const itemDiv = document.createElement('div');
+        itemDiv.classList.add("flex", "gap-2", "items-center", "bg-gray-200", "p-2", "rounded");
+
+        const img = document.createElement('img');
+        img.classList.add("h-14", "w-14");
+        img.src = `../${data.img}`;
+
+        const itemName = document.createElement('p');
+        itemName.innerText = data.name;
+
+        itemDiv.appendChild(img);
+        itemDiv.appendChild(itemName);
+        fragment.appendChild(itemDiv);
+      });
+
+      weeklyItems.replaceChildren(fragment);
     })
   }
 
@@ -133,6 +166,7 @@ document.addEventListener("DOMContentLoaded", () => {
       loadSales();
       loadRevenue();
       loadItemSold();
+      loadWeeklyBestItem();
   }
 
   initData();

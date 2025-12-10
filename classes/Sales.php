@@ -197,25 +197,30 @@ class Sales {
           {
             if($itemId == $p['id'])
             {
-              $img = $p['img'];
+              $itemImg = $p['img'];
 
-             $itemImg = $img;
+             break;
             }
           }
 
-          $weeklyBestSeller 
+          if(isset($weeklyBestSeller[$itemId]))
+          {
+            $weeklyBestSeller[$itemId]['quantity'] += $itemQty;
+          }else{
+            $weeklyBestSeller[$itemId] =  [
+              "name" => $itemName,
+              "quantity" => $itemQty,
+              "img" => $itemImg
+            ];
+          }
         }
       }
     }
 
-    $weekly = [];
+    uasort($weeklyBestSeller, function ($a, $b) {
+      return $b['quantity'] - $a['quantity'];
+    });
 
-    foreach($weeklyBestSeller as $name => $image)
-    {
-      $weekly[] = [
-        "name" => $name,
-        "img" => $img
-      ];
-    }
+    return array_values(array_slice($weeklyBestSeller,0,5));
   }
 }
