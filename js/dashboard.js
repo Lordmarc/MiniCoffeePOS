@@ -2,6 +2,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const tabs = document.querySelectorAll('#links .tab');
 
   const revenue = document.getElementById('revenue');
+  const totalOrder = document.getElementById('total_order');
+  const topItems = document.getElementById('top-items');
   let chart;
 
   tabs.forEach(tab => {
@@ -31,11 +33,10 @@ document.addEventListener("DOMContentLoaded", () => {
   .then(data => {
     console.log("Fetched data:", data);
     
-    const labels = data.map(item => item.date);
-    const sales = data.map(item => item.total_sales);
-
+    const labels = data.sales.map(item => item.date);
+    const sales = data.sales.map(item => item.total_sales);
     const ctx = document.getElementById('sales-chart').getContext('2d');
-
+    console.log("order",totalOrder)
     if(!chart)
     {
         chart = new Chart(ctx, {
@@ -55,7 +56,22 @@ document.addEventListener("DOMContentLoaded", () => {
       chart.update();
     }
 
+    totalOrder.innerText = data.count_order;
   })
+  }
+
+  function loadItemSold()
+  {
+    const itemSold = document.getElementById('item-sold');
+    console.log("Item SOld")
+
+    fetch('../api/todays_item_sold.php')
+    .then(res => res.json())
+    .then(data => {
+      console.log('Ito ng ang item sold: ', data)  
+
+      itemSold.innerText = data;
+    })
   }
 
   function loadRevenue()
@@ -67,17 +83,64 @@ document.addEventListener("DOMContentLoaded", () => {
     .then(data => {
       console.log("Data Received:", data);
 
-      revenue.innerText = data.total_revenue.toFixed(2);
+      revenue.innerHTML = `
+      <p><span>₱</span> ${data.total_revenue.toFixed(2)}</p>
+      `;
     })
   }
 
+  function loadTop3Items()
+  {
+    console.log('Top 3 Items')
+    let count = 0;
+    topItems.innerHTML = "";
+    fetch('../api/top_three_items.php')
+    .then(res => res.json())
+    .then(data => {
+      
+      if(data.length === 0)
+      {
+        console.log("Wala pang best sellers");
+        const noData = document.createElement('div');
+        noData.classList.add("h-full","flex", "justify-center", "items-center", "mb-8");
+        noData.innerHTML =`
+        <p class="text-md  font-bold">No best sellers yet.</p>
+        `;
+        
+        topItems.appendChild(noData);
+      }else {
+        data.forEach(item => {
+        const div = document.createElement('div');
+        div.classList.add("flex", "gap-2")
+        div.innerHTML = `
+          <p class="text-md  font-bold"><span>${count += 1}.</span> ${item.name}</p>
+          <span>-</span>
+          <p class="text-md  font-bold">${item.total_sold}x</p>
+        `;
+        topItems.appendChild(div);
+      })
+      }
 
-  loadSales();
-  loadRevenue();
+
+      
+  
+    })
+  }
+
+  function initData()
+  {
+      loadTop3Items();
+      loadSales();
+      loadRevenue();
+      loadItemSold();
+  }
+
+  initData();
+
+
   setInterval(() => {
     
   console.log("Interval triggered:", new Date().toLocaleTimeString());
-    loadSales();
-    loadRevenue();
+ initData();
   }, 5000)
 });

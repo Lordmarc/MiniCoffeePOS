@@ -8,6 +8,13 @@
   {
     header("Location:login.php");
     exit();
+  
+  }
+
+  if ($_SESSION['role'] !== 'staff')
+  {
+    header("Location: admin/dashboard.php");
+    exit();
   }
 
 ?>

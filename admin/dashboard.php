@@ -31,10 +31,11 @@ if(isset($_SESSION['user_email']))
 </head>
 <body class="min-h-screen flex justify-center items-center w-full">
   <div class="h-screen flex h-full w-full">
-  <div class="sidebar flex flex-col gap-4 h-full w-64 bg-[#F9F8F6] p-4">
-    <div class="flex items-center">
+  <div class="sidebar flex flex-col gap-4 h-full w-64 bg-white p-4">
+    <div class="flex items-center gap-2">
+        <i class="fa-solid fa-mug-hot text-[#7B542F] text-2xl"></i>  
         <h2 class="text-2xl font-semibold">Coffee</h2>
-        <i class="fa-solid fa-mug-hot text-2xl"></i>  
+
     </div>
     
     <nav class="p-2">
@@ -55,40 +56,47 @@ if(isset($_SESSION['user_email']))
          
       </ul>
     </nav>
-    <form action="dashboard.php" method="POST" class="mt-auto">
+    <form action="../logout.php" method="POST" class="mt-auto">
       <button type="submit">Logout</button>
     </form>
   </div>
-  <div class="dashboard h-full flex-1 bg-[#EFE9E3] p-8">
-    <div>
-      <h2>Admin Dashboard</h2>
+  <div class="dashboard h-full flex-1 bg-gray-100 p-8">
+    <div class="mb-4">
+      <h2 class="text-3xl font-semibold">Admin Dashboard</h2>
       <p>Welcome back, Admin!</p>
     </div>
-    <div class="flex flex-col gap-4 h-[calc(100vh-6rem)] flex w-full">
+    <div class="flex flex-col gap-4 h-[calc(100vh-7rem)] flex w-full">
 
-      <div class="flex gap-4">
-        <div class="flex-1 bg-white rounded p-2 h-44">
-          <h3>Revenue</h3>
-          <div class="flex">
-            <span>₱</span>
-            <p id="revenue"></p>
+      <div class="grid grid-cols-4 gap-4">
+        <div class=" flex-1 max-w-sm  flex flex-col justify-center bg-white rounded-md shadow p-6 h-32">
+          <h3 class="text-xl text-slate-500">Today's Revenue</h3>
+       
+          <div id="revenue" class="text-4xl font-bold"></div>
+        </div>
+        <div class=" flex-1 max-w-sm  flex flex-col justify-center bg-white rounded-md shadow p-6 h-32">
+          <h3 class="text-xl text-slate-500">Today's Item Sold</h3>
+
+            <div id="item-sold" class="text-4xl font-bold">0</div>
+
+        </div>
+        <div class=" flex-1 max-w-sm  flex flex-col justify-center bg-white rounded-md shadow p-6 h-32">
+          <h3 class="text-xl text-slate-500">Today's Order</h3>
+          <div id="total_order" class="text-4xl font-bold">0</div>
+        </div>
+           <div class=" flex-1 max-w-sm  flex flex-col  bg-white rounded-md shadow p-2 h-32">
+          <h3 class="text-xl text-slate-500">Best Seller's Today</h3>
+          <div id="top-items" class="pl-2">
+              
           </div>
-        </div>
-        <div class="flex-1 bg-white rounded p-2">
-          <h3>Today's Sale</h3>
-          <p>Price</p>
-        </div>
-        <div class="flex-1 bg-white rounded p-2">
-          <h3>Today's Order</h3>
-          <p>Price</p>
+        
         </div>
       </div>
-      <div class="flex gap-4 h-full">
+      <div class="flex gap-4 h-[550px]">
         <div class="flex-1 bg-white h-full rounded">
                <canvas id="sales-chart"></canvas>
         </div>
-        <div class="popular-items w-[350px]  bg-white rounded">
-          asda
+        <div class="popular-items w-[350px] h-full bg-white rounded">
+          Best Sellers  Today
         </div>
       </div>
     </div>
