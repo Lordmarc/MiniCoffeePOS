@@ -95,10 +95,10 @@ if(isset($_SESSION['user_email']))
     </div>
 
     <div class="category-tab flex items-center flex-1 gap-4">
-      <button class="bg-[#7B542F] text-white rounded-full p-2 font-semibold ">All Items</button>
-      <button class="bg-white rounded-full p-2 font-semibold text-slate-600">Hot Coffee</button>
-      <button class="bg-white rounded-full p-2 font-semibold text-slate-600">Iced Coffee</button>
-      <button class="bg-white rounded-full p-2 font-semibold text-slate-600">Pastries</button>
+      <button id="all-items" class="bg-[#7B542F] text-white rounded-full p-2 font-semibold ">All Items</button>
+      <button id="hot-coffee" class="bg-white rounded-full p-2 font-semibold text-slate-600">Hot Coffee</button>
+      <button id="iced-coffee" class="bg-white rounded-full p-2 font-semibold text-slate-600">Iced Coffee</button>
+      <button id="pastries" class="bg-white rounded-full p-2 font-semibold text-slate-600">Pastries</button>
 
     </div>
 
