@@ -4,34 +4,44 @@
         "name": "Creamy Latte",
         "price": 50,
         "stock": 16,
-        "img": "upload\/creamylatte.jpg"
+        "category": "Hot Coffee",
+        "status": "In Stock",
+        "img": "upload/creamylatte.jpg"
     },
     {
         "id": 2,
-        "name": "Caramel Machiatto",
+        "name": "Caramel Macchiato",
         "price": 69,
         "stock": 18,
-        "img": "upload\/caramelmachiatto.jpg"
+        "category": "Hot Coffee",
+        "status": "In Stock",
+        "img": "upload/caramelmachiatto.jpg"
     },
     {
         "id": 3,
-        "name": "Cappuccino ",
+        "name": "Cappuccino",
         "price": 59,
         "stock": 15,
-        "img": "upload\/cappuccino.jpg"
+        "category": "Hot Coffee",
+        "status": "In Stock",
+        "img": "upload/cappuccino.jpg"
     },
     {
         "id": 4,
         "name": "Americano",
         "price": 79,
-        "stock": 17,
-        "img": "upload\/americano.jpg"
+        "stock": 14,
+        "category": "Hot Coffee",
+        "status": "In Stock",
+        "img": "upload/americano.jpg"
     },
     {
         "id": 5,
         "name": "Iced Caramel Coffee",
         "price": 79,
         "stock": 16,
-        "img": "upload\/icedcaramelcoffee.webp"
+        "category": "Iced Coffee",
+        "status": "In Stock",
+        "img": "upload/icedcaramelcoffee.webp"
     }
 ]

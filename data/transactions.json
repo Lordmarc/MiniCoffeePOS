@@ -529,7 +529,7 @@
             {
                 "id": 3,
                 "name": "Cappuccino ",
-                "price": 59, 
+                "price": 59,
                 "quantity": 4,
                 "subtotal": 236
             },
@@ -551,5 +551,21 @@
         "subtotal": 631,
         "discount": 31.55,
         "total": 599.45
+    },
+    {
+        "id": 30,
+        "date": "2025-12-11 14:30:11",
+        "items": [
+            {
+                "id": 4,
+                "name": "Americano",
+                "price": 79,
+                "quantity": 3,
+                "subtotal": 237
+            }
+        ],
+        "subtotal": 237,
+        "discount": 0,
+        "total": 237
     }
 ]

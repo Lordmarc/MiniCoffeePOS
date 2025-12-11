@@ -60,5 +60,9 @@ class ProductStorage {
     $this->saveProducts($products);
   }
 
+  public function getAllProducts()
+  {
+    return $this->loadProducts();
+  }
 }
 
