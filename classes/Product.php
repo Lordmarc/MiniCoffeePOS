@@ -6,15 +6,21 @@ class Product {
   private $name;
   private $price;
   private $stock;
+  private $category;
+  private $status;
   private $imgUrl;
+  private $description;
 
-  public function __construct($id = null, $name = null, $price = null, $stock = null, $imgUrl = null)
+  public function __construct($id = null, $name = null, $price = null, $stock = null, $category = null, $status = null, $imgUrl = null, $description = null)
   {
     $this->id = $id;
     $this->name = $name;
     $this->price = (float)$price;
     $this->stock = (int)$stock;
+    $this->category = $category;
+    $this->status = $status;
     $this->imgUrl = $imgUrl;
+    $this->description = $description;
   }
 
   public function setId($pId)
@@ -37,9 +43,24 @@ class Product {
     $this->stock = $stock;
   }
 
+  public function setCategory($category)
+  {
+    $this->category = $category;
+  }
+
+  public function setStatus($status)
+  {
+    $this->status = $status;
+  }
+
   public function setImage($img)
   {
     $this->imgUrl = $img;
+  }
+
+  public function setDescription($desc)
+  {
+    $this->description = $desc;
   }
 
   public function getId()
@@ -62,9 +83,24 @@ class Product {
     return $this->stock;
   }
 
+  public function getCategory()
+  {
+    return $this->category;
+  }
+
+  public function getStatus()
+  {
+    return $this->status;
+  }
+
   public function getImg()
   {
     return $this->imgUrl;
+  }
+
+  public function getDescription()
+  {
+    return $this->description;
   }
 
   public function reduceStock($quantity)

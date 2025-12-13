@@ -49,13 +49,32 @@ class ProductStorage {
     }
 
     $products[] = [
-      "id" => $id,
-      "name" => $product->getName(),
-      "price" => $product->getPrice(),
-      "stock" => $product->getStock(),
-      "imgUrl" => $product->getImg()
-
+        "id"       => $id,
+        "name"     => $product->getName(),
+        "price"    => $product->getPrice(),
+        "stock"    => $product->getStock(),
+        "category" => $product->getCategory(),
+        "status"   => $product->getStatus(),
+        "img"      => $product->getImg(),
+        "desc"     => $product->getDescription()
     ];
+
+    $this->saveProducts($products);
+  }
+
+  public function removeProductById($id)
+  {
+    $products = $this->loadProducts();
+
+    foreach($products as $key => $item )
+    {
+      if($item['id'] === (int) $id){
+        unset($products[$key]);
+        break;
+      }
+    }
+
+    $products = array_values($products);
 
     $this->saveProducts($products);
   }
@@ -63,6 +82,34 @@ class ProductStorage {
   public function getAllProducts()
   {
     return $this->loadProducts();
+  }
+
+  public function editProduct(Product $product)
+  {
+    $products = $this->loadProducts();
+
+    foreach($products as $key => $p)
+    {
+      if($p['id'] == $product->getId())
+      {
+          $products[$key]['name'] = $product->getName();
+          $products[$key]['price'] = $product->getPrice();
+          $products[$key]['stock'] = $product->getStock();
+          $products[$key]['category'] = $product->getCategory();
+          $products[$key]['status'] = $product->getStatus();
+          $products[$key]['img'] = $product->getImg();
+          $products[$key]['description'] = $product->getDescription();
+
+          break;
+      }
+    }
+
+    $this->saveProducts($products);
+  }
+
+  public function changeProductImg()
+  {
+    
   }
 }
 

@@ -44,7 +44,7 @@ if(isset($_SESSION['user_email']))
       <i class="fa-solid fa-chart-column"></i>
       <p class="">Dashboard</p>
       </a>
-      <a href="menu.php" class="tab flex items-center gap-2 text-lg p-2 rounded hover:bg-[#EFE9E3] hover:text-[#A08963]">
+      <a href="menu/menu.php" class="tab flex items-center gap-2 text-lg p-2 rounded hover:bg-[#EFE9E3] hover:text-[#A08963]">
       <i class="fa-solid fa-bars-progress"></i>
       <p>Menu Management</p>
     </a>
@@ -114,6 +114,7 @@ if(isset($_SESSION['user_email']))
   </div>
 
   <script src="../js/sidebar.js" defer></script>
+  <script src="../js/dashboard.js"></script>
 </body>
 </html>
 

@@ -1,47 +1,42 @@
 [
-    {
-        "id": 1,
-        "name": "Creamy Latte",
-        "price": 50,
-        "stock": 16,
-        "category": "Hot Coffee",
-        "status": "In Stock",
-        "img": "upload/creamylatte.jpg"
-    },
-    {
-        "id": 2,
-        "name": "Caramel Macchiato",
-        "price": 69,
-        "stock": 18,
-        "category": "Hot Coffee",
-        "status": "In Stock",
-        "img": "upload/caramelmachiatto.jpg"
-    },
-    {
-        "id": 3,
-        "name": "Cappuccino",
-        "price": 59,
-        "stock": 15,
-        "category": "Hot Coffee",
-        "status": "In Stock",
-        "img": "upload/cappuccino.jpg"
-    },
-    {
-        "id": 4,
-        "name": "Americano",
-        "price": 79,
-        "stock": 14,
-        "category": "Hot Coffee",
-        "status": "In Stock",
-        "img": "upload/americano.jpg"
-    },
-    {
-        "id": 5,
-        "name": "Iced Caramel Coffee",
-        "price": 79,
-        "stock": 16,
-        "category": "Iced Coffee",
-        "status": "In Stock",
-        "img": "upload/icedcaramelcoffee.webp"
-    }
+  {
+    "id": 1,
+    "name": "Creamy Latte",
+    "price": 50,
+    "stock": 15,
+    "category": "Hot Coffee",
+    "status": "In Stock",
+    "description": "A smooth and creamy blend of rich espresso and steamed milk, perfect for a comforting coffee break.",
+    "img": "upload/creamylatte.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Caramel Macchiato",
+    "price": 69,
+    "stock": 17,
+    "category": "Hot Coffee",
+    "status": "In Stock",
+    "description": "Espresso layered with steamed milk and topped with sweet caramel syrup for a rich and indulgent flavor.",
+    "img": "upload/caramelmachiatto.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Cappuccino",
+    "price": 59,
+    "stock": 14,
+    "category": "Hot Coffee",
+    "status": "In Stock",
+    "description": "A balanced combination of espresso, steamed milk, and thick milk foam with a bold coffee taste.",
+    "img": "upload/cappuccino.jpg"
+  },
+  {
+    "id": 4,
+    "name": "Americano",
+    "price": 79,
+    "stock": 13,
+    "category": "Hot Coffee",
+    "status": "In Stock",
+    "description": "A strong and bold coffee made by diluting espresso with hot water for a smooth, rich flavor.",
+    "img": "upload/americano.jpg"
+  }
 ]
