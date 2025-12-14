@@ -80,7 +80,7 @@ $itemProduct = $_SESSION['edit_product'];
           <button class="rounded-md border border-[#D0BB95] p-2">
             Cancel
           </button>
-          <button class=" bg-[#7B542F] p-2 rounded text-white font-semibold">
+          <button class="save-btn bg-[#7B542F] p-2 rounded text-white font-semibold">
            
             Save Changes
           </button>
@@ -88,69 +88,73 @@ $itemProduct = $_SESSION['edit_product'];
  
       </div>
 
-      <div class="flex items-center gap-10 w-full p-8 ">
-        <div class="bg-white rounded shadow p-4 border border-[#D0BB95] rounded-lg h-full flex-1">
-          <form action="">
-            <div class="flex items-center gap-2">
-              <i class="fa-solid fa-pen-to-square text-[#ee9d2b]"></i>
-              <h3 class="font-semibold">Product Details</h3>
-            </div>
-            <div class="product-data grid grid-cols-2 gap-4">
-              <div class="flex flex-col">
-                <label for="product_name">Product Name</label>
-                <input class="outline-none border border-[#D0BB95] rounded-md p-2 text-slate-600" type="text" name="product_name" value="<?=  htmlspecialchars($itemProduct->getName()); ?>">
-              </div>
-              <div class="flex flex-col">
-                <label for="product_category">Category</label>
-                <input  class="outline-none border border-[#D0BB95] rounded-md p-2 text-slate-600" type="text" name="product_category" value="<?= htmlspecialchars($itemProduct->getCategory()); ?>">
-              </div>
-              <div class="flex flex-col">
-                <label for="product_price">Price (₱)</label>
-                <input  class="outline-none border border-[#D0BB95] rounded-md p-2 text-slate-600"  type="text" name="product_price" value="<?= htmlspecialchars(number_format($itemProduct->getPrice(),2)); ?>">
-              </div>
-              <div class="flex flex-col">
-                <label for="product_stock">Stock</label>
-                <input  class="outline-none border border-[#D0BB95] rounded-md p-2 text-slate-600"  type="text" name="product_stock" value="<?= htmlspecialchars($itemProduct->getStock()); ?>">
-              </div>
-              <div class="col-span-2  border border-[#D0BB95] rounded-md p-2">
-                <textarea class="w-full h-34 outline-none text-slate-600" name="product_description" id="product_description" maxlength="200"><?= htmlspecialchars($itemProduct->getDescription()); ?></textarea>
-              
-              </div>
-            </div>
-              <small class=" text-end block text-sm text-[#D0BB95]" id="count-letters"> 0 / 200 characters</small>
-           
-          </form>
-        </div>
 
-        <div class="h-full flex flex-col gap-4 bg-white rounded shadow p-8 border border-[#D0BB95] rounded-lg w-96">
-          <div class="flex items-center gap-2">
-            <i class="fa-solid fa-image text-[#ee9d2b]"></i>
-            <h3 class="font-semibold">Product Image</h3>
-
+          <form class="save-form flex items-center gap-10 w-full p-8 " action="updateproduct.php" enctype="multipart/form-data" method="POST">
+              <div class="bg-white rounded shadow p-4 border border-[#D0BB95] rounded-lg h-full flex-1">
           
-          </div>
+                  <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-pen-to-square text-[#ee9d2b]"></i>
+                    <h3 class="font-semibold">Product Details</h3>
+                  </div>
+                  <div class="product-data grid grid-cols-2 gap-4">
+                    <input type="hidden" name="id" value=<?= htmlspecialchars($itemProduct->getId()); ?>>
+                    <input type="hidden" name="status" value="<?= htmlspecialchars($itemProduct->getStatus()); ?>">
+                    <div class="flex flex-col">
+                      <label for="product_name">Product Name</label>
+                      <input class="outline-none border border-[#D0BB95] rounded-md p-2 text-slate-600" type="text" name="product_name" value="<?=  htmlspecialchars($itemProduct->getName()); ?>">
+                    </div>
+                    <div class="flex flex-col">
+                      <label for="product_category">Category</label>
+                      <input  class="outline-none border border-[#D0BB95] rounded-md p-2 text-slate-600" type="text" name="product_category" value="<?= htmlspecialchars($itemProduct->getCategory()); ?>">
+                    </div>
+                    <div class="flex flex-col">
+                      <label for="product_price">Price (₱)</label>
+                      <input  class="outline-none border border-[#D0BB95] rounded-md p-2 text-slate-600"  type="text" name="product_price" value="<?= htmlspecialchars(number_format($itemProduct->getPrice(),2)); ?>">
+                    </div>
+                    <div class="flex flex-col">
+                      <label for="product_stock">Stock</label>
+                      <input  class="outline-none border border-[#D0BB95] rounded-md p-2 text-slate-600"  type="text" name="product_stock" value="<?= htmlspecialchars($itemProduct->getStock()); ?>">
+                    </div>
+                    <div class="col-span-2  border border-[#D0BB95] rounded-md p-2">
+                      <textarea class="w-full h-34 outline-none text-slate-600" name="product_description" id="product_description" maxlength="200"><?= htmlspecialchars($itemProduct->getDescription()); ?></textarea>
+                    
+                    </div>
+                  </div>
+                    <small class=" text-end block text-sm text-[#D0BB95]" id="count-letters"> 0 / 200 characters</small>
+                
 
-            <div class="img-container h-62 w-full rounded-lg overflow-hidden">
-              <label for="product_image">
-                <img id="previewImage" src="../../<?= $itemProduct->getImg(); ?>" class="h-full w-full" alt="Product Image">
-              </label>
-              
-            </div>
+              </div>
 
-            <input
-              type="file"
-              id="product_image"
-              name="product_image"
-              class="hidden"
-              accept="image/jpeg,image/png,image/webp"
-            />
+              <div class="h-full flex flex-col gap-4 bg-white rounded shadow p-8 border border-[#D0BB95] rounded-lg w-96">
+                <div class="flex items-center gap-2">
+                  <i class="fa-solid fa-image text-[#ee9d2b]"></i>
+                  <h3 class="font-semibold">Product Image</h3>
 
-            <small class="text-sm text-[#D0BB95]">
-              Click image to change (JPEG, PNG, WEBP – max 3MB)
-            </small>
-           
-        </div>
-      </div>
+                
+                </div>
+
+                  <div class="img-container h-62 w-full rounded-lg overflow-hidden">
+                    <label for="product_image">
+                      <img id="previewImage" src="../../<?= $itemProduct->getImg(); ?>" class="h-full w-full" alt="Product Image">
+                    </label>
+                    
+                  </div>
+                  <input type="hidden" name="current_image" value="<?= htmlspecialchars($itemProduct->getImg()); ?>">
+                  <input
+                    type="file"
+                    id="product_image"
+                    name="product_image"
+                    class="hidden"
+                    accept="image/jpeg,image/png,image/webp"
+                  />
+
+                  <small class="text-sm text-[#D0BB95]">
+                    Click image to change (JPEG, PNG, WEBP – max 3MB)
+                  </small>
+                
+              </div>
+        </form>
+
     </div>
     
 
@@ -159,5 +163,6 @@ $itemProduct = $_SESSION['edit_product'];
 
   <script src="../../js/sidebar.js"></script>
   <script src="../../js/menu.js"></script>
+  <script src="../../js/edit-product.js"></script>
 </body>
 </html>

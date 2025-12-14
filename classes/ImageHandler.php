@@ -21,13 +21,13 @@ class ImageHandler {
 
   public function upload($file)
   {
-    if($file['name'])
+    if(empty($file['name']))
     {
       return null;
     }
 
     $allowedTypes = [
-      "image/jpg",
+      "image/jpeg",
       "image/png",
       "image/webp"
     ];

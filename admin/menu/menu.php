@@ -44,7 +44,7 @@ if(isset($_SESSION['user_email']))
       <i class="fa-solid fa-chart-column"></i>
       <p class="">Dashboard</p>
       </a>
-      <a href="menu/menu.php" class="tab flex items-center gap-2 text-lg p-2 rounded bg-[#EFE9E3] text-[#A08963]">
+      <a href="#" class="tab flex items-center gap-2 text-lg p-2 rounded bg-[#EFE9E3] text-[#A08963]">
       <i class="fa-solid fa-bars-progress"></i>
       <p>Menu Management</p>
     </a>
@@ -79,17 +79,15 @@ if(isset($_SESSION['user_email']))
       <div class="flex items-center gap-10 w-full">
           <div class="flex p-2 gap-2 rounded bg-white shadow items-center w-96">
             <i class="fa-solid fa-magnifying-glass text-slate-500"></i>
-            <input type="text" class="outline-none text-slate-500" placeholder="Search for latte,croissant, etc...">
+            <input id="search-product" type="text" class="outline-none text-slate-500 w-full" placeholder="Search for latte,croissant, etc...">
           </div>
         <div class="flex bg-white text-center rounded p-2">
 
         <select id="sort" class="outline-none">
-          <option value="name-asc">Name A → Z</option>
+          <option value="name-asc" selected>Name A → Z</option>
           <option value="name-desc">Name Z → A</option>
           <option value="price-asc">Price Low → High</option>
           <option value="price-desc">Price High → Low</option>
-          <option value="popularity-desc">Best Sellers</option>
-          <option value="popularity-asc">Least Sold</option>
           <option value="newest">Newest First</option>
           <option value="oldest">Oldest First</option>
         </select>

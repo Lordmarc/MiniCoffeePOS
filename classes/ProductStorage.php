@@ -56,7 +56,7 @@ class ProductStorage {
         "category" => $product->getCategory(),
         "status"   => $product->getStatus(),
         "img"      => $product->getImg(),
-        "desc"     => $product->getDescription()
+        "description"     => $product->getDescription()
     ];
 
     $this->saveProducts($products);
@@ -84,7 +84,7 @@ class ProductStorage {
     return $this->loadProducts();
   }
 
-  public function editProduct(Product $product)
+  public function updateProduct(Product $product)
   {
     $products = $this->loadProducts();
 
@@ -107,9 +107,6 @@ class ProductStorage {
     $this->saveProducts($products);
   }
 
-  public function changeProductImg()
-  {
-    
-  }
+ 
 }
 

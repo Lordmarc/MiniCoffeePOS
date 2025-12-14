@@ -203,6 +203,11 @@ class Sales {
             }
           }
 
+          if(empty($itemImg))
+          {
+            continue;
+          }
+
           if(isset($weeklyBestSeller[$itemId]))
           {
             $weeklyBestSeller[$itemId]['quantity'] += $itemQty;

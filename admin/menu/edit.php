@@ -3,6 +3,8 @@ session_start();
 require_once __DIR__ . '/../../classes/ProductStorage.php';
 require_once __DIR__ . '/../../classes/Product.php';
 
+
+
 if($_SERVER['REQUEST_METHOD'] === "POST")
 {
   $id = $_POST['id'];
