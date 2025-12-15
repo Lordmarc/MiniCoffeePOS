@@ -5,7 +5,8 @@
         "price": 59,
         "stock": 30,
         "category": "Hot Coffee",
-        "status": "In Stock",
+        "status": true,
+        "isActive": true,
         "description": "A smooth and creamy blend of rich espresso and steamed milk, perfect for a comforting coffee break.",
         "img": "upload\/creamylatte.jpg"
     },
@@ -15,7 +16,8 @@
         "price": 69,
         "stock": 17,
         "category": "Hot Coffee",
-        "status": "In Stock",
+        "status": true,
+        "isActive": true,
         "description": "Espresso layered with steamed milk and topped with sweet caramel syrup for a rich and indulgent flavor.",
         "img": "upload\/caramelmachiatto.jpg"
     },
@@ -25,7 +27,8 @@
         "price": 59,
         "stock": 13,
         "category": "Hot Coffee",
-        "status": "In Stock",
+        "status": true,
+        "isActive": true,
         "description": "A balanced combination of espresso, steamed milk, and thick milk foam with a bold coffee taste.",
         "img": "upload\/cappuccino.jpg"
     },
@@ -35,17 +38,19 @@
         "price": 79,
         "stock": 12,
         "category": "Hot Coffee",
-        "status": "In Stock",
-        "description": "A strong and bold coffee made by diluting espresso with hot water for a smooth, rich flavor.",
-        "img": "upload\/americano.jpg"
+        "status": true,
+        "isActive": false,
+        "description": "A balanced combination of espresso, steamed milk, and thick milk foam with a bold coffee taste.",
+        "img": "upload\/693fd5366326c.jpg"
     },
     {
         "id": 5,
         "name": "Iced Caramel Coffee",
         "price": 59,
-        "stock": 24,
+        "stock": 23,
         "category": "Iced Coffee",
-        "status": "In Stock",
+        "status": true,
+        "isActive": true,
         "description": "A balanced combination of espresso, steamed milk, and thick milk foam with a bold coffee taste.",
         "img": "upload\/icedcaramelcoffee.webp"
     }

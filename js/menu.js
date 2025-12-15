@@ -1,71 +1,81 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const tabs = document.querySelectorAll('.category-tab button');
-  const tableBody = document.getElementById('category-items');
+document.addEventListener("DOMContentLoaded", () => {
+  const tabs = document.querySelectorAll(".category-tab button");
+  const tableBody = document.getElementById("category-items");
 
-  const allItemsTab = document.getElementById('all-items');
+  const allItemsTab = document.getElementById("all-items");
+  const addProduct = document.querySelector(".add-product");
 
+  if (!addProduct) {
+    console.log("Add Product button not found!");
+  } else {
+    addProduct.addEventListener("click", () => {
+      console.log("Add Product clicked"); // Debug line
+      window.location.href = "addproduct.php";
+    });
+  }
 
-renderProducts({ category: 'all-items', sort: 'name-asc' });
-  tabs.forEach(t => {
+  renderProducts({ category: "all-items", sort: "name-asc" });
+  tabs.forEach((t) => {
     t.classList.remove("bg-[#7B542F]", "text-white");
-  })
+  });
   allItemsTab.classList.add("bg-[#7B542F]", "text-white");
 
-  tabs.forEach(tab => {
-    tab.addEventListener('click', ()=> {
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
       renderProducts({ category: tab.id, sort: sortSelect.value });
-      tabs.forEach(t => {
-        t.classList.remove(
-          "bg-[#7B542F]",
-          "text-white",
-          "bg-white"
-        );
-      })
-      tab.classList.add(
-        "bg-[#7B542F]",
-        "text-white"
-      );
-    })
-  })
+      tabs.forEach((t) => {
+        t.classList.remove("bg-[#7B542F]", "text-white", "bg-white");
+      });
+      tab.classList.add("bg-[#7B542F]", "text-white");
+    });
+  });
 
-function renderProducts({category = 'all-items', sort = 'name-asc', search = ''} = {}) {
-  tableBody.innerHTML = ""; 
+  function renderProducts({
+    category = "all-items",
+    sort = "name-asc",
+    search = "",
+  } = {}) {
+    tableBody.innerHTML = "";
 
-  fetch('../../api/product_item.php')
-    .then(res => res.json())
-    .then(data => {
-      console.log(data)
+    fetch("../../api/product_item.php")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
 
-         if (category !== 'all-items') {
-          data = data.filter(item => item.category.toLowerCase().replace(/\s+/g, '-') === category);
+        if (category !== "all-items") {
+          data = data.filter(
+            (item) =>
+              item.category.toLowerCase().replace(/\s+/g, "-") === category
+          );
         }
 
-        if(search.trim() !== '')
-        {
+        if (search.trim() !== "") {
           const searchLower = search.toLowerCase();
-          data = data.filter(item => item.name.toLowerCase().includes(searchLower));
+          data = data.filter((item) =>
+            item.name.toLowerCase().includes(searchLower)
+          );
         }
 
-         switch (sort) {
-          case 'name-asc':
+        switch (sort) {
+          case "name-asc":
             data.sort((a, b) => a.name.localeCompare(b.name));
             break;
-          case 'name-desc':
+          case "name-desc":
             data.sort((a, b) => b.name.localeCompare(a.name));
             break;
-          case 'price-asc':
+          case "price-asc":
             data.sort((a, b) => a.price - b.price);
             break;
-          case 'price-desc':
+          case "price-desc":
             data.sort((a, b) => b.price - a.price);
             break;
-          }
+        }
 
-      data.forEach(item => {
-        const tableRow = document.createElement('tr');
-        tableRow.classList.add("border-b", "border-slate-300");
+        data.forEach((item) => {
+          const tableRow = document.createElement("tr");
+          tableRow.classList.add("border-b", "border-slate-300");
 
-        tableRow.innerHTML = `
+          tableRow.innerHTML = `
           <td class="flex items-center gap-2 p-4">
             <img src="../../${item.img}" alt="" class="w-18 h-18 rounded-md">
             <p>${item.name}</p>
@@ -74,12 +84,20 @@ function renderProducts({category = 'all-items', sort = 'name-asc', search = ''}
           <td><p>₱ ${item.price.toFixed(2)}</p></td>
           <td class="px-6 py-3 align-middle">
             <div class="flex items-center gap-2">
-              ${item.status === 'In Stock'
-                ? '<div class="h-2 w-2 rounded-full bg-green-500"></div>'
-                : '<div class="h-2 w-2 rounded-full bg-red-500"></div>'}
-              <p>${item.status}</p>
+              ${
+                item.status === true
+                  ? '<div class="h-2 w-2 rounded-full bg-green-500"></div>'
+                  : '<div class="h-2 w-2 rounded-full bg-red-500"></div>'
+              }
+              <div>
+                ${
+                  item.status === true
+                    ? "<p>In Stock</p>"
+                    : "<p>Out of Stock</p>"
+                }
+              </div>
             </div>
-          </td>
+          </td> 
           <td>
             <div class="flex gap-2 items-center text-xl">
               <form action="edit.php" method="POST">
@@ -91,6 +109,9 @@ function renderProducts({category = 'all-items', sort = 'name-asc', search = ''}
                 <input type="hidden" name="status" value="${item.status}">
                 <input type="hidden" name="img" value="${item.img}">
                 <input type="hidden" name="desc" value="${item.description}">
+                <input type="hidden" name="pos-visible" value="${
+                  item.isActive
+                }">
                 <button type="submit" class="cursor-pointer">
                   <i class="fa-solid fa-pen-to-square"></i>
                 </button>
@@ -101,55 +122,57 @@ function renderProducts({category = 'all-items', sort = 'name-asc', search = ''}
             </div>
           </td>
         `;
-        tableBody.appendChild(tableRow);
+          tableBody.appendChild(tableRow);
 
-        const deleteBtn = tableRow.querySelector('.delete-btn');
-        deleteBtn.addEventListener('click', (event) => deleteProduct(event, item.id));
+          const deleteBtn = tableRow.querySelector(".delete-btn");
+          deleteBtn.addEventListener("click", (event) =>
+            deleteProduct(event, item.id)
+          );
+        });
       });
-    });
-}
+  }
 
-function deleteProduct(event, id)
-{
-  event.preventDefault();
+  function deleteProduct(event, id) {
+    event.preventDefault();
 
-  const activeTab = document.querySelector('.category-tab button.bg-[#7B542F]');
-  const category = activeTab ? activeTab.id : 'all-items';
-  const sort = sortSelect.value;
+    const activeTab = document.querySelector(
+      ".category-tab button.bg-[#7B542F]"
+    );
+    const category = activeTab ? activeTab.id : "all-items";
+    const sort = sortSelect.value;
 
-  fetch('../api/delete_product.php', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
-    },
-    body: 'id=' + id
-  })
-  .then(res => res.text())
-  .then(result => {
-    console.log(result);
-    renderProducts({ category, sort });
+    fetch("../api/delete_product.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: "id=" + id,
+    })
+      .then((res) => res.text())
+      .then((result) => {
+        console.log(result);
+        renderProducts({ category, sort });
+      });
+  }
+
+  const sortSelect = document.getElementById("sort");
+  sortSelect.addEventListener("change", () => {
+    const activeTab = Array.from(
+      document.querySelectorAll(".category-tab button")
+    ).find((tab) => tab.classList.contains("bg-[#7B542F]"));
+    const category = activeTab ? activeTab.id : "all-items";
+    renderProducts({ category, sort: sortSelect.value });
   });
-}
 
+  const searchInput = document.getElementById("search-product");
 
-
-const sortSelect = document.getElementById('sort');
-sortSelect.addEventListener('change', () => {
-const activeTab = Array.from(document.querySelectorAll('.category-tab button'))
-  .find(tab => tab.classList.contains('bg-[#7B542F]'));
-  const category = activeTab ? activeTab.id : 'all-items';
-  renderProducts({ category, sort: sortSelect.value });
-})
-
-const searchInput = document.getElementById('search-product');
-
-searchInput.addEventListener('input', () => {
-  const activeTab = Array.from(document.querySelectorAll('.category-tab button'))
-  .find(tab => tab.classList.contains('bg-[#7B542F]'));
-  const category = activeTab ? activeTab.id : 'all-items';
-  const sort = sortSelect.value;
-  const search = searchInput.value;
-  renderProducts({ category, sort,  search });
-})
-
-})
+  searchInput.addEventListener("input", () => {
+    const activeTab = Array.from(
+      document.querySelectorAll(".category-tab button")
+    ).find((tab) => tab.classList.contains("bg-[#7B542F]"));
+    const category = activeTab ? activeTab.id : "all-items";
+    const sort = sortSelect.value;
+    const search = searchInput.value;
+    renderProducts({ category, sort, search });
+  });
+});

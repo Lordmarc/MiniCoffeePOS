@@ -18,6 +18,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST')
     $desc = $_POST['product_description'];
     $status = $_POST['status'];
     $currentImg = $_POST['current_image'];
+    $itemPosVisible = $_POST['pos_visible'];
 
     if(isset($_FILES['product_image']) && $_FILES['product_image']['name'])
     {
@@ -26,7 +27,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST')
       $img = $currentImg;
     }
 
-    $product = new Product($id,$name, $price, $stock, $category, $status, $img, $desc);
+    $product = new Product($id,$name, $price, $stock, $category, $status, $itemPosVisible, $img, $desc);
     $storage->updateProduct($product);
 
     header("Location: menu.php");

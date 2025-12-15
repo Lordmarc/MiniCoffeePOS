@@ -70,7 +70,7 @@ if(isset($_SESSION['user_email']))
           <h3 class="text-3xl font-bold">Menu Management</h3>
           <p class="text-slate-500">Manage your coffee and pastry </p>
         </div>
-        <button class="self-end bg-[#7B542F] p-2 rounded text-white font-semibold">
+        <button class="add-product self-end bg-[#7B542F] p-2 rounded text-white font-semibold">
         <i class="fa-solid fa-plus"></i>
         Add New Product
         </button>
@@ -141,5 +141,6 @@ if(isset($_SESSION['user_email']))
 
   <script src="../../js/sidebar.js"></script>
   <script src="../../js//menu.js"></script>
+
 </body>
 </html>

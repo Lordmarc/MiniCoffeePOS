@@ -50,6 +50,7 @@
 
           foreach($products as $product)
           {
+            if($product['isActive'] !== false){
             echo '<div class="menu-item cursor-pointer  h-full flex flex-col rounded-md overflow-hidden bg-white hover:scale-105 transition-transform duration-300 shadow-md" data-id="'. $product['id'].'" data-img="'. $product['img'] .'" data-name="'. $product['name'] .'" data-price="'. $product['price'] .'">
              <div class="min-h-32 md:min-h-64">
               <img class="h-full w-full" src="' . $product['img'] . '" alt="">
@@ -60,8 +61,9 @@
               <p class="text-xs md:text-lg text-slate-700 font-semibold">' . '₱ ' .number_format($product['price'], 2). '' .'</p>
              </div> 
             </div>';
+            }
           }
-          
+           
         ?>
       
       </div>

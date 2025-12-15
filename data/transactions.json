@@ -657,5 +657,21 @@
         "subtotal": 197,
         "discount": 9.85,
         "total": 187.15
+    },
+    {
+        "id": 34,
+        "date": "2025-12-15 08:56:33",
+        "items": [
+            {
+                "id": 5,
+                "name": "Iced Caramel Coffee",
+                "price": 59,
+                "quantity": 1,
+                "subtotal": 59
+            }
+        ],
+        "subtotal": 59,
+        "discount": 0,
+        "total": 59
     }
 ]

@@ -55,6 +55,7 @@ class ProductStorage {
         "stock"    => $product->getStock(),
         "category" => $product->getCategory(),
         "status"   => $product->getStatus(),
+        "isActive" => $product->getIsActive(),
         "img"      => $product->getImg(),
         "description"     => $product->getDescription()
     ];
@@ -84,6 +85,8 @@ class ProductStorage {
     return $this->loadProducts();
   }
 
+
+
   public function updateProduct(Product $product)
   {
     $products = $this->loadProducts();
@@ -97,6 +100,7 @@ class ProductStorage {
           $products[$key]['stock'] = $product->getStock();
           $products[$key]['category'] = $product->getCategory();
           $products[$key]['status'] = $product->getStatus();
+          $products[$key]['isActive'] = $product->getIsActive();
           $products[$key]['img'] = $product->getImg();
           $products[$key]['description'] = $product->getDescription();
 

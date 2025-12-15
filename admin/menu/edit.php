@@ -15,9 +15,10 @@ if($_SERVER['REQUEST_METHOD'] === "POST")
   $status = $_POST['status'];
   $img = $_POST['img'];
   $desc = $_POST['desc'];
+  $posVisible = $_POST['pos-visible'];
 
 
-  $product = new Product($id, $name, $price, $stock, $category, $status, $img, $desc);
+  $product = new Product($id, $name, $price, $stock, $category, $status, $posVisible, $img, $desc);
 
   $_SESSION['edit_product'] = $product;
   header("Location: editproduct.php");

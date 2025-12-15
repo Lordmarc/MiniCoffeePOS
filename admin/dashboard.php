@@ -99,7 +99,7 @@ if(isset($_SESSION['user_email']))
         </div>
         <div class="popular-items w-[350px] p-4 h-full max-h-[650px] bg-white rounded shadow flex flex-col gap-2">
           <h3 class="w-full text-center text-xl">Weekly Best Seller</h3>
-          <div class="weekly-items w-full h-full flex flex-1 gap-2  flex-col relative">
+          <div class="weekly-items w-full h-full flex flex-1 gap-2 flex-col relative">
           
          
           </div>

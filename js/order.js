@@ -1,18 +1,18 @@
 document.addEventListener("DOMContentLoaded", () => {
   const items = document.querySelectorAll(".menu-item");
   const order = document.querySelector(".order");
-  const numbersBtn = document.querySelectorAll('.numbers-btn button');
+  const numbersBtn = document.querySelectorAll(".numbers-btn button");
 
   const subtotal = document.querySelector(".subtotal-amount");
   const discount = document.querySelector(".discount");
   const totalAmount = document.querySelector(".total-amount");
-  const cashAmount = document.querySelector('.cash-amount');
-  const changeAmount = document.querySelector('.change-amount');
+  const cashAmount = document.querySelector(".cash-amount");
+  const changeAmount = document.querySelector(".change-amount");
 
-  const studentBtn = document.getElementById('student');
-  const pwdBtn = document.getElementById('pwd');
-  const seniorBtn = document.getElementById('senior');
-  
+  const studentBtn = document.getElementById("student");
+  const pwdBtn = document.getElementById("pwd");
+  const seniorBtn = document.getElementById("senior");
+
   const checkout = document.getElementById("checkout-btn");
 
   let total = 0;
@@ -20,102 +20,95 @@ document.addEventListener("DOMContentLoaded", () => {
   let discountValue = 0;
   let discountAmount = 0;
 
-  numbersBtn.forEach(btn => {
-    btn.classList.add('bg-slate-300', 'rounded', 'hover:bg-slate-400', 'hover:text-white', 'cursor-pointer')
-    btn.addEventListener('click', ()=> {
+  numbersBtn.forEach((btn) => {
+    btn.classList.add(
+      "bg-slate-300",
+      "rounded",
+      "hover:bg-slate-400",
+      "hover:text-white",
+      "cursor-pointer"
+    );
+    btn.addEventListener("click", () => {
       const value = btn.innerText;
 
-      if(value === 'CLR'){
-        cashAmount.value = '';
-
-      }else if (value === "DEL")
-      {
-        cashAmount.value = cashAmount.value.slice(0,-1);
-      }else if(value === 'VOID')
-      {
+      if (value === "CLR") {
+        cashAmount.value = "";
+      } else if (value === "DEL") {
+        cashAmount.value = cashAmount.value.slice(0, -1);
+      } else if (value === "VOID") {
         order.innerHTML = "";
         total = 0;
-        cashAmount.value = '';
-        changeAmount.innerHTML = '';
+        cashAmount.value = "";
+        changeAmount.innerHTML = "";
         updateTotalUI();
-      }else if( value === '.') {
-        if(!cashAmount.value.includes('.')){
-          cashAmount.value += '.';
+      } else if (value === ".") {
+        if (!cashAmount.value.includes(".")) {
+          cashAmount.value += ".";
         }
-      }else if (value === 'Calculate') {
+      } else if (value === "Calculate") {
         calculateChange();
       } else {
         cashAmount.value += value;
       }
 
-      console.log('clicked!');
-    })
-  })
+      console.log("clicked!");
+    });
+  });
 
-  function calculateChange()
-  {
+  function calculateChange() {
     const cash = parseFloat(cashAmount.value);
 
-    if(!isNaN(cash))
-    {
+    if (!isNaN(cash)) {
       const change = cash - discountAmount;
       changeAmount.innerHTML = `₱ ${change.toFixed(2)}`;
     }
   }
 
-
-  function discounted(dc)
-  {
+  function discounted(dc) {
     discountRate = 0;
-    switch(dc){
-      case 'student':
+    switch (dc) {
+      case "student":
         discountRate = 0.05;
         break;
-      case 'pwd':
+      case "pwd":
         discountRate = 0.1;
         break;
-      case 'senior':
+      case "senior":
         discountRate = 0.15;
         break;
       default:
-         discountRate = 0;
+        discountRate = 0;
     }
   }
 
-  studentBtn.addEventListener('click', () => {
-    discounted('student');
+  studentBtn.addEventListener("click", () => {
+    discounted("student");
     updateTotalUI();
-    console.log('click');
+    console.log("click");
   });
 
-  pwdBtn.addEventListener('click', () => {
-    discounted('pwd');
+  pwdBtn.addEventListener("click", () => {
+    discounted("pwd");
     updateTotalUI();
-    console.log('click');
-  })
+    console.log("click");
+  });
 
-  seniorBtn.addEventListener('click', () => {
-    discounted('senior');
+  seniorBtn.addEventListener("click", () => {
+    discounted("senior");
     updateTotalUI();
-    console.log('click');
-  })
+    console.log("click");
+  });
 
   function updateTotalUI() {
-
     total = Math.round(total * 100) / 100;
 
-    discountValue = Math.round((total * discountRate) * 100) / 100;
+    discountValue = Math.round(total * discountRate * 100) / 100;
     discountAmount = Math.round((total - discountValue) * 100) / 100;
-
-
 
     subtotal.innerHTML = `₱ ${total.toFixed(2)}`;
     discount.innerHTML = `₱ ${discountValue.toFixed(2)}`;
     totalAmount.innerHTML = `₱ ${discountAmount.toFixed(2)}`;
-
   }
-  
-
 
   items.forEach((item) => {
     item.addEventListener("click", () => {
@@ -131,8 +124,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         qtyInput.value = parseInt(qtyInput.value) + 1;
 
-        total += price;
-        updateTotalUI();
+        qtyInput.dispatchEvent(new Event("input"));
 
         return;
       }
@@ -172,7 +164,7 @@ document.addEventListener("DOMContentLoaded", () => {
       quantity.classList.add("flex", "gap-1", "ml-auto");
       quantity.innerHTML = `
         <button class="add-qty bg-[#DCC5B2] p-2 h-8 w-8 flex justify-center items-center font-semibold cursor-pointer"><i class="fa-solid fa-plus"></i></button>
-        <input type="text" value="1"  class="item-qty text-center bg-white p-2 h-8 w-8 flex justify-center items-center text-slate-600">
+        <input type="text" min="1" value="1"  class="item-qty text-center bg-white p-2 h-8 w-14 flex justify-center items-center text-slate-600">
         <button class="minus-qty bg-[#DCC5B2] p-2 h-8 w-8 flex justify-center items-center font-semibold cursor-pointer"><i class="fa-solid fa-minus"></i></button>
       `;
 
@@ -191,25 +183,44 @@ document.addEventListener("DOMContentLoaded", () => {
       const minusQty = orderContainer.querySelector(".minus-qty");
       const itemQty = orderContainer.querySelector(".item-qty");
 
+      let previousQty = 1;
+
       // Adding Item Quantity
 
+      itemQty.addEventListener("input", () => {
+        let newQty = parseInt(itemQty.value);
+
+        if(isNaN(newQty) || newQty < 1)
+        {
+          itemQty.value = previousQty;
+          return;
+        }
+
+        const diff = newQty - previousQty;
+        total += diff * price;
+
+        previousQty = newQty;
+        updateTotalUI();
+      });
+
       addQty.addEventListener("click", () => {
-        itemQty.value = parseInt(itemQty.value) + 1;
+        previousQty++;
+        itemQty.value = previousQty;
         total += price;
         updateTotalUI();
       });
 
       minusQty.addEventListener("click", () => {
-        let currentValue = parseInt(itemQty.value);
-
-        if (currentValue <= 1) {
-          total -= price;
+        if(previousQty <= 1)
+        {
           orderContainer.remove();
+          total -= price;
           updateTotalUI();
           return;
         }
 
-        itemQty.value = currentValue - 1;
+        previousQty--;
+        itemQty.value = previousQty;
         total -= price;
         updateTotalUI();
       });
@@ -234,26 +245,39 @@ document.addEventListener("DOMContentLoaded", () => {
       items: cartItems,
       subtotal: total,
       discount: discountValue,
-      total: discountAmount
-    }
+      total: discountAmount,
+    };
 
     fetch("classes/checkout.php", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(payload)
+      body: JSON.stringify(payload),
     })
       .then((res) => res.json())
-      .then((data) => console.log(data))
+      .then((data) => {
+        console.log(data)
+         if(!data.success){
+          Swal.fire({
+            icon:"error",
+            title: "Checkout Failed",
+            text: data.error || "Something went wrong."
+          });
+          return
+        }
+      }
+      
+       
+      )
       .catch((err) => console.error(err));
 
     order.innerHTML = "";
     total = 0;
     cashAmount.blur();
-    cashAmount.value = '';
-    setTimeout(() => cashAmount.value = '', 0);
-    changeAmount.innerHTML = '';
+    cashAmount.value = "";
+    setTimeout(() => (cashAmount.value = ""), 0);
+    changeAmount.innerHTML = "";
     discountRate = 0;
     discountValue = 0;
     discountAmount = 0;
