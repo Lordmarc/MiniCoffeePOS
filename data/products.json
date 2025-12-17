@@ -53,5 +53,16 @@
         "isActive": true,
         "description": "A balanced combination of espresso, steamed milk, and thick milk foam with a bold coffee taste.",
         "img": "upload\/icedcaramelcoffee.webp"
+    },
+    {
+        "id": 6,
+        "name": "Iced Vanilla Coffee",
+        "price": 55,
+        "stock": 20,
+        "category": "Iced Coffee",
+        "status": true,
+        "isActive": true,
+        "img": "upload\/6942cc3f2de6e.jpg",
+        "description": "Ice vanilla coffee"
     }
 ]

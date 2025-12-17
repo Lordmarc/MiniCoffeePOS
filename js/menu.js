@@ -5,6 +5,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const allItemsTab = document.getElementById("all-items");
   const addProduct = document.querySelector(".add-product");
 
+  let currentCategory = "all-items";
+  let currentSort = "name-asc";
+  let currentSearch = "";
+
+  let currentPage = 1;
+  const itemsPerPage = 5;
+
+
   if (!addProduct) {
     console.log("Add Product button not found!");
   } else {
@@ -21,13 +29,17 @@ document.addEventListener("DOMContentLoaded", () => {
   allItemsTab.classList.add("bg-[#7B542F]", "text-white");
 
   tabs.forEach((tab) => {
-    tab.addEventListener("click", () => {
-      renderProducts({ category: tab.id, sort: sortSelect.value });
-      tabs.forEach((t) => {
-        t.classList.remove("bg-[#7B542F]", "text-white", "bg-white");
-      });
-      tab.classList.add("bg-[#7B542F]", "text-white");
-    });
+  tab.addEventListener("click", () => {
+  currentPage = 1;
+  currentCategory = tab.id;
+  renderProducts({ category: currentCategory, sort: currentSort, search: currentSearch });
+
+  tabs.forEach((t) => {
+    t.classList.remove("bg-[#7B542F]", "text-white", "bg-white");
+  });
+  tab.classList.add("bg-[#7B542F]", "text-white");
+});
+
   });
 
   function renderProducts({
@@ -71,7 +83,50 @@ document.addEventListener("DOMContentLoaded", () => {
             break;
         }
 
-        data.forEach((item) => {
+        const paginationInfo = document.getElementById('pagination-info');
+        const paginationButtons = document.getElementById('pagination-buttons');
+
+        const totalItems = data.length;
+        const totalPages = Math.ceil(totalItems/itemsPerPage);
+
+        if (currentPage > totalPages) currentPage = 1;
+
+        const start = (currentPage - 1) * itemsPerPage;
+        const end = start + itemsPerPage;
+
+        const paginatedData = data.slice(start, end);
+
+        if(paginationInfo)
+        {
+          paginationInfo.textContent = `Showing ${start +1}-${Math.min(end, totalItems)} of ${totalItems}`;
+        }
+        if (paginationButtons) {
+  paginationButtons.innerHTML = "";
+
+  for (let i = 1; i <= totalPages; i++) {
+    const btn = document.createElement("button");
+    btn.textContent = i;
+
+    btn.className = `
+      px-3 py-1 rounded border
+      ${
+        i === currentPage
+          ? "bg-[#7B542F] text-white"
+          : "bg-white hover:bg-gray-100"
+      }
+    `;
+
+    btn.addEventListener("click", () => {
+      currentPage = i;
+      renderProducts({ category, sort, search });
+    });
+
+    paginationButtons.appendChild(btn);
+  }
+}
+
+
+        paginatedData.forEach((item) => {
           const tableRow = document.createElement("tr");
           tableRow.classList.add("border-b", "border-slate-300");
 
@@ -156,23 +211,33 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const sortSelect = document.getElementById("sort");
-  sortSelect.addEventListener("change", () => {
-    const activeTab = Array.from(
-      document.querySelectorAll(".category-tab button")
-    ).find((tab) => tab.classList.contains("bg-[#7B542F]"));
-    const category = activeTab ? activeTab.id : "all-items";
-    renderProducts({ category, sort: sortSelect.value });
-  });
+ sortSelect.addEventListener("change", () => {
+  currentPage = 1;
+  currentSort = sortSelect.value;
+  const activeTab = Array.from(
+    document.querySelectorAll(".category-tab button")
+  ).find((tab) => tab.classList.contains("bg-[#7B542F]"));
+
+  const category = activeTab ? activeTab.id : "all-items";
+  renderProducts({ category, sort:currentSort, search: currentSearch });
+});
+
 
   const searchInput = document.getElementById("search-product");
 
-  searchInput.addEventListener("input", () => {
-    const activeTab = Array.from(
-      document.querySelectorAll(".category-tab button")
-    ).find((tab) => tab.classList.contains("bg-[#7B542F]"));
-    const category = activeTab ? activeTab.id : "all-items";
-    const sort = sortSelect.value;
-    const search = searchInput.value;
-    renderProducts({ category, sort, search });
+searchInput.addEventListener("input", () => {
+  currentPage = 1;
+  currentSearch = searchInput.value;
+  const activeTab = Array.from(
+    document.querySelectorAll(".category-tab button")
+  ).find((tab) => tab.classList.contains("bg-[#7B542F]"));
+
+  const category = activeTab ? activeTab.id : "all-items";
+  renderProducts({
+    category: currentCategory,
+    sort: sortSelect.value,
+    search: currentSearch,
   });
+});
+
 });

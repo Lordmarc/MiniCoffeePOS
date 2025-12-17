@@ -103,7 +103,7 @@ if(isset($_SESSION['user_email']))
 
       </div>
 
-      <div class="relative flex-1 bg-white rounded-md overflow-hidden">
+      <div class="relative flex flex-col flex-1 bg-white rounded-md overflow-hidden">
         <table class="w-full text-sm ">
             <thead class="text-sm text-left text-body bg-gray-200">
               <tr>
@@ -131,6 +131,10 @@ if(isset($_SESSION['user_email']))
           </tbody>
         </table>
 
+        <div id="pagination" class="flex justify-end gap-2 p-4 border-t text-sm bg-white mt-auto">
+          <p id="pagination-info" class="text-slate-500"></p>
+          <div id="pagination-buttons" class="flex gap-2"></div>
+        </div>
         </div>
       </div>
     </div>

@@ -84,61 +84,80 @@ if(isset($_SESSION['user_email']))
           <button class="cancel-btn rounded-md border border-[#D0BB95] p-2">
             Cancel
           </button>
+                 <button type="submit" class="save-btn bg-[#7B542F] p-2 rounded text-white font-semibold">
+           
+            Save Changes
+          </button>
          
         </div>
  
       </div>
 
 
-          <form class="save-form flex items-start gap-10 w-full p-8 " action="addproduct.php" enctype="multipart/form-data" method="POST">
-   
-              <div class="bg-white rounded flex flex-col gap-4 shadow p-4 border border-[#D0BB95] h-full max-h-[550px] rounded-lg  flex-1">
-          
-                  <div class="flex items-center gap-2">
-                    <i class="fa-solid fa-pen-to-square text-[#ee9d2b]"></i>
-                    <h3 class="font-semibold">Product Information</h3>
-                  </div>
-                  <div class="product-data grid grid-cols-2 gap-4">
-        
-                    <input type="hidden" name="status" value="1">
-                    <input type="hidden" name="isActive" value="1">
-                    <input type="hidden">
-                    <div class="flex flex-col mb-">
-                      <label for="product_name">Product Name</label>
-                      <input class="mt-2 outline-none border border-[#D0BB95] rounded-md p-2 text-slate-600" type="text" name="product_name" value="">
-                    </div>
-                    <div class="flex flex-col">
-                      <label for="product_category">Category</label>
-                      <select class="mt-2 outline-none border border-[#D0BB95] rounded-md p-2 text-slate-600" name="product_category" id="">
-                        <option value="" selected>Select Category</option>
-                        <?php
-                        
-                       
-                        foreach ($categories as $category)
-                        {
+          <form class="save-form flex items-start gap-10 w-full p-8 " action="add_product.php" enctype="multipart/form-data" method="POST">
+            <div class="flex flex-col flex-1 gap-4">
+                <div class="bg-white rounded flex flex-col gap-4 shadow p-4 border border-[#D0BB95] h-full max-h-[550px] rounded-lg  ">
+              
+                      <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-pen-to-square text-[#ee9d2b]"></i>
+                        <h3 class="font-bold">Product Information</h3>
+                      </div>
+                      <div class="product-data grid grid-cols-2 gap-4">
+            
+                        <input type="hidden" name="status" value="1">
+                        <input type="hidden" name="isActive" value="1">
+                        <input type="hidden">
+                        <div class="flex flex-col mb-">
+                          <label for="product_name">Product Name</label>
+                          <input class="mt-2 outline-none border border-[#D0BB95] rounded-md p-2 text-slate-600" type="text" name="product_name" value="">
+                        </div>
+                        <div class="flex flex-col">
+                          <label for="product_category">Category</label>
+                          <select class="mt-2 outline-none border border-[#D0BB95] rounded-md p-2 text-slate-600" name="product_category" id="">
+                            <option value="" selected>Select Category</option>
+                            <?php
+                            
                           
-                          echo '<option value="' . $category['name']. '">'.$category['name'].'</option>';
-                        }
-                        ?>
-                      </select>
-                    </div>
-                    <div class="flex flex-col">
-                      <label for="product_price">Price (₱)</label>
-                      <input  class="mt-2 outline-none border border-[#D0BB95] rounded-md p-2 text-slate-600"  type="text" name="product_price" value="">
-                    </div>
-                    <div class="flex flex-col">
-                      <label for="product_stock">Stock</label>
-                      <input  class="mt-2 outline-none border border-[#D0BB95] rounded-md p-2 text-slate-600"  type="text" name="product_stock" value="">
-                    </div>
-                    <div class="col-span-2  border border-[#D0BB95] rounded-md p-2">
-                      <textarea class="w-full h-34 outline-none text-slate-600" name="product_description" id="product_description" maxlength="200"></textarea>
+                            foreach ($categories as $category)
+                            {
+                              
+                              echo '<option value="' . $category['name']. '">'.$category['name'].'</option>';
+                            }
+                            ?>
+                          </select>
+                        </div>
+                        <div class="flex flex-col">
+                          <label for="product_price">Price (₱)</label>
+                          <input  class="mt-2 outline-none border border-[#D0BB95] rounded-md p-2 text-slate-600"  type="text" name="product_price" value="">
+                        </div>
+                        <div class="flex flex-col">
+                          <label for="product_stock">Stock</label>
+                          <input  class="mt-2 outline-none border border-[#D0BB95] rounded-md p-2 text-slate-600"  type="text" name="product_stock" value="">
+                        </div>
                     
-                    </div>
                   </div>
-                    <small class=" text-end block text-sm text-[#D0BB95]" id="count-letters"> 0 / 200 characters</small>
-                
 
-              </div>
+                  </div>
+                  <div class="bg-white rounded flex flex-col gap-4 shadow p-4 border border-[#D0BB95] h-full max-h-[550px] rounded-lg">
+                        <div class="flex flex-col">
+                       <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-file-lines text-[#ee9d2b]"></i>
+                        <h3 class="font-bold">Details</h3>
+                      </div>
+                    </div>
+                  
+                     <div class="">
+                        <p class="font-semibold">Description</p>
+                        <textarea class=" border border-[#D0BB95] rounded-md p-2 w-full h-34 outline-none text-slate-600" name="product_description" id="product_description" maxlength="200"></textarea>
+                        <small class=" text-end block text-sm text-[#D0BB95]" id="count-letters"> 0 / 200 characters</small>
+                     </div>
+                    
+             
+                
+                          </div>
+                  </div>
+                  
+       
 
               <div class="flex flex-col gap-8">
                 <div class="h-full flex flex-col gap-4 bg-white  shadow p-8 border border-[#D0BB95] rounded-lg w-96">
@@ -146,7 +165,6 @@ if(isset($_SESSION['user_email']))
                   <i class="fa-solid fa-image text-[#ee9d2b]"></i>
                   <h3 class="font-semibold">Product Image</h3>
 
-                
                 </div>
 
                   <div class="img-container  border border-dashed border-[#D0BB95] flex flex-col justify-center items-center p-4 mb-4  h-62 w-full rounded-lg overflow-hidden">
@@ -169,7 +187,7 @@ if(isset($_SESSION['user_email']))
                 
                   <h3 class="font-semibold">Preview</h3>
                   <div class="img-preview-container border border-dashed border-[#D0BB95] flex flex-col justify-center items-center p-4  h-62 w-full rounded-lg overflow-hidden">
-                        <img id="imgPreview" src="" alt="" class="h-full w-full">
+                        <img id="imgPreview" src="../../images/coffee.png" alt="" class="h-full w-full rounded-lg">
                         
                   </div>
          
@@ -179,10 +197,7 @@ if(isset($_SESSION['user_email']))
 
              
               </div>
-              <button type="submit" class="save-btn bg-[#7B542F] p-2 rounded text-white font-semibold">
-           
-            Save Changes
-          </button>
+       
         </form>
 
     </div>
