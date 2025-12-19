@@ -58,7 +58,7 @@ if(isset($_SESSION['user_email']))
       <p>Menu Management</p>
     </a>
 
-    <a href="orderhistory.php" class=" tab flex items-center gap-2 text-lg p-2 rounded hover:bg-[#EFE9E3] hover:text-[#A08963]" >
+    <a href="../orderhistory.php" class=" tab flex items-center gap-2 text-lg p-2 rounded hover:bg-[#EFE9E3] hover:text-[#A08963]" >
       <i class="fa-solid fa-scroll"></i>
       <p>Order History</p>
     </a>

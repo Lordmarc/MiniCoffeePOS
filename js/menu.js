@@ -106,9 +106,9 @@ document.addEventListener("DOMContentLoaded", () => {
   for (let i = 1; i <= totalPages; i++) {
     const btn = document.createElement("button");
     btn.textContent = i;
-
+    
     btn.className = `
-      px-3 py-1 rounded border
+     
       ${
         i === currentPage
           ? "bg-[#7B542F] text-white"
