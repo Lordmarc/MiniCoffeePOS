@@ -26,11 +26,11 @@ if(isset($_SESSION['user_email']))
   <title>CoffeePOS</title>
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
-<body>
+
   <body class="min-h-screen flex justify-center items-center w-full">
   <div class="flex h-screen w-full h-full">
    <div class="sidebar flex flex-col gap-4 h-full w-64 bg-white p-4">
@@ -41,22 +41,28 @@ if(isset($_SESSION['user_email']))
 </div>
 
 <nav class="p-2">
-  <ul id="links" class="flex flex-col gap-3">
-    <a href="dashboard.php" class="tab flex items-center gap-2 text-lg  p-2 rounded hover:bg-[#EFE9E3] hover:text-[#A08963 font-semibold">
-      <i class="fa-solid fa-chart-column"></i>
-      <p class="">Dashboard</p>
-      </a>
-      <a href="menu/menu.php" class="tab flex items-center gap-2 text-lg p-2 rounded bg-[#EFE9E3] text-[#A08963]">
-      <i class="fa-solid fa-bars-progress"></i>
-      <p>Menu Management</p>
-    </a>
+   <ul id="links" class="flex flex-col gap-3">
 
-    <a href="../orderhistory.php" class=" tab flex items-center gap-2 text-lg p-2 rounded hover:bg-[#EFE9E3] hover:text-[#A08963]" >
-      <i class="fa-solid fa-scroll"></i>
-      <p>Order History</p>
-    </a>
-      
-  </ul>
+  <a href="/coffeePOS/admin/dashboard.php"
+     class="tab flex items-center gap-2 text-lg p-2 rounded hover:bg-[#EFE9E3] hover:text-[#A08963]">
+    <i class="fa-solid fa-chart-column"></i>
+    <p>Dashboard</p>
+  </a>
+
+  <a href="/coffeePOS/admin/menu.php"
+     class="tab flex items-center gap-2 text-lg p-2 rounded hover:bg-[#EFE9E3] hover:text-[#A08963]">
+    <i class="fa-solid fa-bars-progress"></i>
+    <p>Menu Management</p>
+  </a>
+
+  <a href="/coffeePOS/admin/orderhistory.php"
+     class="tab flex items-center gap-2 text-lg p-2 rounded bg-[#EFE9E3] text-[#A08963]">
+    <i class="fa-solid fa-scroll"></i>
+    <p>Order History</p>
+  </a>
+
+</ul>
+
 </nav>
 <form action="../logout.php" method="POST" class="mt-auto flex items-center gap-2 hover:bg-[#EFE9E3] hover:text-[#A08963] text-lg p-2 cursor-pointer">
     <i class="fa-solid fa-arrow-right-from-bracket rotate-180"></i>
@@ -72,7 +78,7 @@ if(isset($_SESSION['user_email']))
           <h3 class="text-3xl font-bold">Order History</h3>
           <p class="text-slate-500">View and manage past transactions </p>
         </div>
-        <button class="add-product self-end bg-[#7B542F] p-2 rounded text-white font-semibold">
+        <button class="export-file self-end bg-[#7B542F] p-2 rounded text-white font-semibold">
         <i class="fa-solid fa-download"></i>
         Export Report
         </button>
@@ -134,7 +140,7 @@ if(isset($_SESSION['user_email']))
                   <th scope="col" class="px-6 py-3 font-medium">
                       DATE & TIME
                   </th>
-                  <th scope="col" class="px-6 py-3 rounded-e-base font-medium">
+                  <th scope="col" class="px-6 py-3 min-w-sm rounded-e-base font-medium">
                       ITEMS SUMMARY
                   </th>
                   <th scope="col" class="px-6 py-3 rounded-e-base font-medium">
@@ -154,6 +160,29 @@ if(isset($_SESSION['user_email']))
           <p id="pagination-info" class="text-slate-500"></p>
           <div id="pagination-buttons" class="flex gap-2"></div>
         </div>
+        <div id="pdfPreview" class="hidden border p-4 bg-white max-w-4xl mx-auto my-6">
+  <h2 style="color: #7B542F; text-align:center; font-size: 20px; font-weight: 700;">
+    CoffeePOS Order History
+  </h2>
+  <p id="previewDateRange" style="text-align:center; margin-bottom: 1em; font-size: 14px; color: #333;">
+    Date Range: All Dates
+  </p>
+  
+  <table style="width:100%; border-collapse: collapse; font-size: 12px;">
+    <thead style="background-color: #7B542F; color:white;">
+      <tr>
+        <th style="padding:8px; border: 1px solid #ddd;">Order ID</th>
+        <th style="padding:8px; border: 1px solid #ddd; text-align:left;">Date & Time</th>
+        <th style="padding:8px; border: 1px solid #ddd; text-align:left;">Items</th>
+        <th style="padding:8px; border: 1px solid #ddd; text-align:right;">Total Amount</th>
+      </tr>
+    </thead>
+    <tbody id="previewBody">
+      <!-- Rows will be generated here -->
+    </tbody>
+  </table>
+</div>
+
         </div>
       </div>
     </div>
@@ -165,6 +194,6 @@ if(isset($_SESSION['user_email']))
   <script src="../js/sidebar.js"></script>
   <script src="../js//history.js"></script>
 
-</body>
+
 </body>
 </html>

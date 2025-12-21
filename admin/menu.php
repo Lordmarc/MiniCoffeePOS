@@ -1,8 +1,8 @@
 <?php
 
 session_start();
-require_once __DIR__ . '/../../classes/Auth.php';
-require_once __DIR__ . '/../../classes/ProductStorage.php';
+require_once __DIR__ . '/../classes/Auth.php';
+require_once __DIR__ . '/../classes/ProductStorage.php';
 
 if(!isset($_SESSION['user_id']))
 {
@@ -39,22 +39,28 @@ if(isset($_SESSION['user_email']))
 </div>
 
 <nav class="p-2">
-  <ul id="links" class="flex flex-col gap-3">
-    <a href="../dashboard.php" class="tab flex items-center gap-2 text-lg  p-2 rounded hover:bg-[#EFE9E3] hover:text-[#A08963 font-semibold">
-      <i class="fa-solid fa-chart-column"></i>
-      <p class="">Dashboard</p>
-      </a>
-      <a href="#" class="tab flex items-center gap-2 text-lg p-2 rounded bg-[#EFE9E3] text-[#A08963]">
-      <i class="fa-solid fa-bars-progress"></i>
-      <p>Menu Management</p>
-    </a>
+   <ul id="links" class="flex flex-col gap-3">
 
-    <a href="../orderhistory.php" class=" tab flex items-center gap-2 text-lg p-2 rounded hover:bg-[#EFE9E3] hover:text-[#A08963]" >
-      <i class="fa-solid fa-scroll"></i>
-      <p>Order History</p>
-    </a>
-      
-  </ul>
+  <a href="/coffeePOS/admin/dashboard.php"
+     class="tab flex items-center gap-2 text-lg p-2 rounded hover:bg-[#EFE9E3] hover:text-[#A08963]">
+    <i class="fa-solid fa-chart-column"></i>
+    <p>Dashboard</p>
+  </a>
+
+  <a href="/coffeePOS/admin/menu.php"
+     class="tab flex items-center gap-2 text-lg p-2 rounded bg-[#EFE9E3] text-[#A08963]">
+    <i class="fa-solid fa-bars-progress"></i>
+    <p>Menu Management</p>
+  </a>
+
+  <a href="/coffeePOS/admin/orderhistory.php"
+     class="tab flex items-center gap-2 text-lg p-2 rounded hover:bg-[#EFE9E3] hover:text-[#A08963]">
+    <i class="fa-solid fa-scroll"></i>
+    <p>Order History</p>
+  </a>
+
+</ul>
+
 </nav>
 <form action="../logout.php" method="POST" class="mt-auto flex items-center gap-2 hover:bg-[#EFE9E3] hover:text-[#A08963] text-lg p-2 cursor-pointer">
     <i class="fa-solid fa-arrow-right-from-bracket rotate-180"></i>
@@ -143,8 +149,8 @@ if(isset($_SESSION['user_email']))
 
 
 
-  <script src="../../js/sidebar.js"></script>
-  <script src="../../js//menu.js"></script>
+  <script src="../js/sidebar.js"></script>
+  <script src="../js/menu.js"></script>
 
 </body>
 </html>

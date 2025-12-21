@@ -41,7 +41,7 @@
       </form>
     </nav>
     <div class="h-full w-full  flex flex-wrap">
-      <div class="menu flex-1 grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 auto-rows-[200px] md:auto-rows-[350px] w-full items-center gap-5 bg-[#DCC5B2] p-4 overflow-y-auto h-full" style="max-height: calc(100vh - 4rem);">
+      <div class="menu flex-1 grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 auto-rows-[200px] md:auto-rows-[250px] w-full items-center gap-5 bg-[#DCC5B2] p-4 overflow-y-auto h-full" style="max-height: calc(100vh - 4rem);">
         <?php
           $file = 'data/products.json';
           $json = file_get_contents($file);
@@ -52,12 +52,12 @@
           {
             if($product['isActive'] !== false){
             echo '<div class="menu-item cursor-pointer  h-full flex flex-col rounded-md overflow-hidden bg-white hover:scale-105 transition-transform duration-300 shadow-md" data-id="'. $product['id'].'" data-img="'. $product['img'] .'" data-name="'. $product['name'] .'" data-price="'. $product['price'] .'">
-             <div class="min-h-32 md:min-h-64">
+             <div class="min-h-32 md:min-h-44">
               <img class="h-full w-full" src="' . $product['img'] . '" alt="">
              </div>
              
              <div class="h-32 flex flex-col justify-center items-center text-center p-2">
-              <h3 class="text-xs md:text-lg">' .$product['name'] .'</h3>
+              <h3 class="text-xs md:text-[15px]">' .$product['name'] .'</h3>
               <p class="text-xs md:text-lg text-slate-700 font-semibold">' . '₱ ' .number_format($product['price'], 2). '' .'</p>
              </div> 
             </div>';
@@ -68,10 +68,17 @@
       
       </div>
       
-      <div class="h-full flex flex-col w-96 bg-[#FAF7F3] ">
+      <div class="flex flex-col  md:w-62 lg:w-96 bg-[#FAF7F3] h-full">
+
         <!-- order list -->
          <h3>Order Summary</h3>
-          <div class="order max-h-[80px] md:max-h-[220px] lg:max-h-[450px] flex  flex-col gap-1 p-2 overflow-y-auto"></div>
+         <!-- on this part -->
+          <div class="order flex flex-col gap-1 p-2 flex-1 overflow-y-auto 
+            lg:max-h-[200px] xl:max-h-[280px] ">
+  <!-- Order items -->
+</div>
+
+
           
           <div class="mt-auto  flex flex-col gap-2 bg-white h-auto p-2">
           <div class="total-container  flex flex-col">
@@ -117,7 +124,7 @@
               <button>0</button>
               <button>.</button>
               <button>00</button>
-              <button>Calculate</button>
+              <button>=</button>
             </div>
             <div class="discount-btn grid grid-cols-3 auto-rows-[30px] gap-2 w-full p-2">
               <button id="student" class=" bg-blue-400 rounded text-white cursor-pointer">Student</button>

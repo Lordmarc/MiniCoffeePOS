@@ -12,7 +12,6 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentPage = 1;
   const itemsPerPage = 5;
 
-
   if (!addProduct) {
     console.log("Add Product button not found!");
   } else {
@@ -29,17 +28,20 @@ document.addEventListener("DOMContentLoaded", () => {
   allItemsTab.classList.add("bg-[#7B542F]", "text-white");
 
   tabs.forEach((tab) => {
-  tab.addEventListener("click", () => {
-  currentPage = 1;
-  currentCategory = tab.id;
-  renderProducts({ category: currentCategory, sort: currentSort, search: currentSearch });
+    tab.addEventListener("click", () => {
+      currentPage = 1;
+      currentCategory = tab.id;
+      renderProducts({
+        category: currentCategory,
+        sort: currentSort,
+        search: currentSearch,
+      });
 
-  tabs.forEach((t) => {
-    t.classList.remove("bg-[#7B542F]", "text-white", "bg-white");
-  });
-  tab.classList.add("bg-[#7B542F]", "text-white");
-});
-
+      tabs.forEach((t) => {
+        t.classList.remove("bg-[#7B542F]", "text-white", "bg-white");
+      });
+      tab.classList.add("bg-[#7B542F]", "text-white");
+    });
   });
 
   function renderProducts({
@@ -48,8 +50,9 @@ document.addEventListener("DOMContentLoaded", () => {
     search = "",
   } = {}) {
     tableBody.innerHTML = "";
+fetch("/coffeePOS/api/product_item.php")
 
-    fetch("../../api/product_item.php")
+
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -83,11 +86,11 @@ document.addEventListener("DOMContentLoaded", () => {
             break;
         }
 
-        const paginationInfo = document.getElementById('pagination-info');
-        const paginationButtons = document.getElementById('pagination-buttons');
+        const paginationInfo = document.getElementById("pagination-info");
+        const paginationButtons = document.getElementById("pagination-buttons");
 
         const totalItems = data.length;
-        const totalPages = Math.ceil(totalItems/itemsPerPage);
+        const totalPages = Math.ceil(totalItems / itemsPerPage);
 
         if (currentPage > totalPages) currentPage = 1;
 
@@ -96,18 +99,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const paginatedData = data.slice(start, end);
 
-        if(paginationInfo)
-        {
-          paginationInfo.textContent = `Showing ${start +1}-${Math.min(end, totalItems)} of ${totalItems}`;
+        if (paginationInfo) {
+          paginationInfo.textContent = `Showing ${start + 1}-${Math.min(
+            end,
+            totalItems
+          )} of ${totalItems}`;
         }
         if (paginationButtons) {
-  paginationButtons.innerHTML = "";
+          paginationButtons.innerHTML = "";
 
-  for (let i = 1; i <= totalPages; i++) {
-    const btn = document.createElement("button");
-    btn.textContent = i;
-    
-    btn.className = `
+          for (let i = 1; i <= totalPages; i++) {
+            const btn = document.createElement("button");
+            btn.textContent = i;
+
+            btn.className = `
      
       ${
         i === currentPage
@@ -116,15 +121,14 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     `;
 
-    btn.addEventListener("click", () => {
-      currentPage = i;
-      renderProducts({ category, sort, search });
-    });
+            btn.addEventListener("click", () => {
+              currentPage = i;
+              renderProducts({ category, sort, search });
+            });
 
-    paginationButtons.appendChild(btn);
-  }
-}
-
+            paginationButtons.appendChild(btn);
+          }
+        }
 
         paginatedData.forEach((item) => {
           const tableRow = document.createElement("tr");
@@ -132,7 +136,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
           tableRow.innerHTML = `
           <td class="flex items-center gap-2 p-4">
-            <img src="../../${item.img}" alt="" class="w-18 h-18 rounded-md">
+            <img src="../${item.img}" alt="" class="w-18 h-18 rounded-md">
             <p>${item.name}</p>
           </td>
           <td><p>${item.category}</p></td>
@@ -211,33 +215,34 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const sortSelect = document.getElementById("sort");
- sortSelect.addEventListener("change", () => {
-  currentPage = 1;
-  currentSort = sortSelect.value;
-  const activeTab = Array.from(
-    document.querySelectorAll(".category-tab button")
-  ).find((tab) => tab.classList.contains("bg-[#7B542F]"));
+  sortSelect.addEventListener("change", () => {
+    currentPage = 1;
+    currentSort = sortSelect.value;
+    const activeTab = Array.from(
+      document.querySelectorAll(".category-tab button")
+    ).find((tab) => tab.classList.contains("bg-[#7B542F]"));
 
-  const category = activeTab ? activeTab.id : "all-items";
-  renderProducts({ category, sort:currentSort, search: currentSearch });
-});
-
+    const category = activeTab ? activeTab.id : "all-items";
+    renderProducts({ category, sort: currentSort, search: currentSearch });
+  });
 
   const searchInput = document.getElementById("search-product");
 
-searchInput.addEventListener("input", () => {
-  currentPage = 1;
-  currentSearch = searchInput.value;
-  const activeTab = Array.from(
-    document.querySelectorAll(".category-tab button")
-  ).find((tab) => tab.classList.contains("bg-[#7B542F]"));
+  searchInput.addEventListener("input", () => {
+    currentPage = 1;
+    currentSearch = searchInput.value;
+    const activeTab = Array.from(
+      document.querySelectorAll(".category-tab button")
+    ).find((tab) => tab.classList.contains("bg-[#7B542F]"));
 
-  const category = activeTab ? activeTab.id : "all-items";
-  renderProducts({
-    category: currentCategory,
-    sort: sortSelect.value,
-    search: currentSearch,
+    const category = activeTab ? activeTab.id : "all-items";
+    renderProducts({
+      category: currentCategory,
+      sort: sortSelect.value,
+      search: currentSearch,
+    });
   });
-});
+
+ 
 
 });
