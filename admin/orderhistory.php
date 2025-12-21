@@ -160,7 +160,7 @@ if(isset($_SESSION['user_email']))
           <p id="pagination-info" class="text-slate-500"></p>
           <div id="pagination-buttons" class="flex gap-2"></div>
         </div>
-        <div id="pdfPreview" class="hidden border p-4 bg-white max-w-4xl mx-auto my-6">
+  <div id="pdfPreview" class="hidden border p-4 bg-white max-w-4xl mx-auto my-6">
   <h2 style="color: #7B542F; text-align:center; font-size: 20px; font-weight: 700;">
     CoffeePOS Order History
   </h2>

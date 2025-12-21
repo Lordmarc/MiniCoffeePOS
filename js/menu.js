@@ -50,9 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
     search = "",
   } = {}) {
     tableBody.innerHTML = "";
-fetch("/coffeePOS/api/product_item.php")
-
-
+    fetch("/coffeePOS/api/product_item.php")
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -108,11 +106,11 @@ fetch("/coffeePOS/api/product_item.php")
         if (paginationButtons) {
           paginationButtons.innerHTML = "";
 
-          for (let i = 1; i <= totalPages; i++) {
+            for (let i = 1; i <= totalPages; i++) {
             const btn = document.createElement("button");
             btn.textContent = i;
-
-            btn.className = `
+            btn.classList.add("px-4", "py-3");
+            btn.className = `p-2
      
       ${
         i === currentPage
@@ -136,7 +134,7 @@ fetch("/coffeePOS/api/product_item.php")
 
           tableRow.innerHTML = `
           <td class="flex items-center gap-2 p-4">
-            <img src="../${item.img}" alt="" class="w-18 h-18 rounded-md">
+            <img src="../${item.img}" alt="" class="w-14 h-14 rounded-md">
             <p>${item.name}</p>
           </td>
           <td><p>${item.category}</p></td>
@@ -242,7 +240,4 @@ fetch("/coffeePOS/api/product_item.php")
       search: currentSearch,
     });
   });
-
- 
-
 });

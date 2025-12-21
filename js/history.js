@@ -98,7 +98,7 @@ function updatePreviewTable(data, dateRangeText = "All Dates") {
     previewBody.appendChild(tr);
   });
   
-  preview.classList.remove("hidden"); // show preview
+
 }
 
 
